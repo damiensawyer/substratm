@@ -21,10 +21,6 @@ I was thinking to use the following libraries. Yell out if you hate them or have
     - [Redux Toolkit](https://redux-toolkit.js.org)
     - [Mui](https://mui.com)
 
-
-## Builds and tests
-Dev
-[![Dev Build Status](https://dev.azure.com/damiensawyer/Substratm/_apis/build/status/damiensawyer.substratm?branchName=develop)]
                  
 
 
