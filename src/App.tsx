@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './content/substratmlogo.png';
 import './App.css';
+import { add } from './functions/maths';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         
         </p>
         <a className="App-link" target="_blank" href="https://chain.link/hackathon"><pre>https://chain.link/hackathon</pre></a>          
+        <pre>1+2={add(1,2)}</pre>
       </header>
     </div>
   );
