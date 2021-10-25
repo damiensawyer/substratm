@@ -22,4 +22,9 @@ I was thinking to use the following libraries. Yell out if you hate them or have
     - [Mui](https://mui.com)
 
 
+## Builds and tests
+Dev
+[![Build Status](https://dev.azure.com/damiensawyer/Substratm/_apis/build/status/damiensawyer.substratm?branchName=develop)](https://dev.azure.com/damiensawyer/Substratm/_build/latest?definitionId=34&branchName=develop)
 
+Main
+[![Build Status](https://dev.azure.com/damiensawyer/Substratm/_apis/build/status/damiensawyer.substratm?branchName=main)](https://dev.azure.com/damiensawyer/Substratm/_build/latest?definitionId=34&branchName=main)
