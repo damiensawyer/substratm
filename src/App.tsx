@@ -1,6 +1,5 @@
 import React from 'react';
 import logo from './content/substratmlogo.png';
-import {add} from './functions/maths'
 import './App.css';
 
 function App() {
@@ -11,6 +10,10 @@ function App() {
         <p>
         
         </p>
+        <a className="App-link" target="_blank" href="https://chain.link/hackathon"><pre>https://chain.link/hackathon</pre></a>          
+        <a className="App-link" target="_blank" href="https://chain.link/hackathon"><pre>https://chain.link/hackathon</pre></a>          
+        <a className="App-link" target="_blank" href="https://chain.link/hackathon"><pre>https://chain.link/hackathon</pre></a>          
+        <a className="App-link" target="_blank" href="https://chain.link/hackathon"><pre>https://chain.link/hackathon</pre></a>          
         <a className="App-link" target="_blank" href="https://chain.link/hackathon"><pre>https://chain.link/hackathon</pre></a>          
       </header>
     </div>
