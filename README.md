@@ -14,7 +14,10 @@
 # Tests
     - run Jest tests with ```npm test``` or ```npm run test:ci```
 
-
+# Libraries
+I was thinking to use the following libraries. Yell out if you hate them or have a better idea
+    - [Redux Toolkit](https://redux-toolkit.js.org/)
+    - [Mui](https://mui.com/)
 
 
 
