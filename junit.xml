@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="3" failures="0" errors="0" time="1.722">
+  <testsuite name="maths tests" errors="0" failures="0" skipped="0" timestamp="2021-10-25T10:44:44" time="1.064" tests="2">
+    <testcase classname="maths tests should add numbers" name="maths tests should add numbers" time="0.002">
+    </testcase>
+    <testcase classname="simple tests should add numbers" name="simple tests should add numbers" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2021-10-25T10:44:45" time="0.149" tests="1">
+    <testcase classname=" renders learn react link" name=" renders learn react link" time="0.001">
+    </testcase>
+  </testsuite>
+</testsuites>

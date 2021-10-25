@@ -20,7 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test:ci": "npm run test -- --watchAll=false"
+    "test:ci": "npm run test -- --watchAll=false --reporters=default --reporters=jest-junit"
   },
   "eslintConfig": {
     "extends": [
@@ -41,9 +41,15 @@
     ]
   },
   "devDependencies": {
-    "@types/jest": "^26.0.24"
+    "@types/jest": "^26.0.24",
+    "jest-junit": "^13.0.0"
   },
   "quokka": {
     "babel": true
+  },
+  "jest-junit": {
+    "suiteNameTemplate": "{filepath}",
+    "outputDirectory": ".",
+    "outputName": "junit.xml"
   }
 }
