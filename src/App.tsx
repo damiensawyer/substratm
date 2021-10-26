@@ -12,7 +12,7 @@ function App() {
         
         </p>
         <a className="App-link" target="_blank" href="https://chain.link/hackathon"><pre>https://chain.link/hackathon</pre></a>      
-        <pre>dev</pre>    
+        <pre>prod</pre>    
       </header>
     </div>
   );
