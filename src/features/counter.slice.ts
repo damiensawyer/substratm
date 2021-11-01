@@ -18,7 +18,7 @@ const initialState: CounterState = {
     counterValue: 0,
     status: 'idle',
     pingValue:"PING",
-    isStarted:true,
+    isStarted:false,
     count:0
 };
 
