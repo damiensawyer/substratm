@@ -15,7 +15,7 @@ function App() {
     let isStarted = useAppSelector(x => x.counterSlice.isStarted)
     let isLoggedIn = useAppSelector(x => x.loginSlice.loggedIn)
     let dispatch = useAppDispatch()
-    
+
 
     useEffect(() => {
         if (!isStarted)
@@ -28,16 +28,16 @@ function App() {
                 <nav>
                     <ul>
                         <li><Link to="/">Root</Link></li>
+                        {/*// https://knowbody.github.io/react-router-docs/api/Link.html*/}
                         <li><Link to="/home">Home</Link></li>
                         <li><Link to="/about">About</Link></li>
                         <li><Link to="/login">Login</Link></li>
-                        
                     </ul>
                 </nav>
+                <h3>Logged In: {isLoggedIn ? 'yes' : 'no'}</h3>
             </main>
             <Switch>
-                <Route exact path="/" render={() => <h1>Welcome!</h1>} />
-                {/*<Route path="/" render={() => <p>logged in: {isLoggedIn ? 'yes' : 'no'}</p>}/>*/}
+                <Route exact path="/" render={() => <h1>Welcome!</h1>}/>
                 <Route path="/login" component={Login}/>
                 {isLoggedIn
                     ? <>
@@ -47,9 +47,9 @@ function App() {
                     </>
                     : <Redirect to="/login"/>
                 }
-                
+
             </Switch>
-            
+
 
         </Router>
     );
