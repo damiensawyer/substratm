@@ -102,7 +102,7 @@ export const incrementIfOdd = (amount: number): AppThunk => (
     }
 };
 
-
+// Examples of using RXJS to listen for actions and asynchronously yield other actions
 export const pingEpic = (action$: any, state: any) => action$.pipe(
     ofType(setPing), // Pulling out the string 'ping/setPing' from the action creator 
     tap(()=>console.log(`ping state:`), state),
