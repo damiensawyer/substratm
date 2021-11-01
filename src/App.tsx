@@ -1,3 +1,4 @@
+import {CssBaseline} from "@mui/material";
 import React, {useEffect} from 'react';
 import {BrowserRouter as Router, Route, Link, Switch, Redirect} from "react-router-dom";
 import logo from './content/substratmlogo.png';
@@ -24,6 +25,7 @@ function App() {
 
     return (
         <Router>
+            <CssBaseline/>
             <main>
                 <nav>
                     <ul>
