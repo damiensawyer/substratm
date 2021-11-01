@@ -31,10 +31,10 @@ function App() {
             <main>
                 <nav>
                     <ul>
-                        <li><Link to="/">Root</Link></li>
                         {/*// https://knowbody.github.io/react-router-docs/api/Link.html*/}
-                        <li><Link to="/home">Home</Link></li>
-                        <li><Link to="/about">About</Link></li>
+                        <li><Link to="/">Root</Link></li>
+                        {isLoggedIn && <li><Link to="/home">Home</Link></li>}
+                        {isLoggedIn && <li><Link to="/about">About</Link></li>}
                         <li><Link to="/login">Login</Link></li>
                     </ul>
                 </nav>
