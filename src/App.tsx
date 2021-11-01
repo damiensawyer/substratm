@@ -1,11 +1,12 @@
 import {CssBaseline} from "@mui/material";
 import React, {useEffect} from 'react';
 import {BrowserRouter as Router, Route, Link, Switch, Redirect} from "react-router-dom";
+import NavigationBar from "./components/navigation/navigationBar";
 import logo from './content/substratmlogo.png';
 import './App.css';
-import {useAppSelector, useAppDispatch} from "./features/hooks";
+import {useAppSelector, useAppDispatch} from "./slices/hooks";
 import {add} from './functions/maths';
-import {setPing, setPong} from "./features/counter.slice";
+import {setPing, setPong} from "./slices/counter.slice";
 import About from "./pages/about/About";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
@@ -25,6 +26,7 @@ function App() {
 
     return (
         <Router>
+            <NavigationBar />
             <CssBaseline/>
             <main>
                 <nav>

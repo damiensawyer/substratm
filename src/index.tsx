@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import {Provider} from "react-redux";
 import App from './App';
-import {useAppDispatch} from "./features/hooks";
+import {useAppDispatch} from "./slices/hooks";
 import reportWebVitals from './reportWebVitals';
-import {store} from './features/store'
+import {store} from './slices/store'
 import {theme} from './content/helpers'
 import {ThemeProvider} from "@emotion/react";
 

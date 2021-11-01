@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import logo from '../../content/substratmlogo.png';
 import './Home.css';
-import {useAppSelector, useAppDispatch} from "../../features/hooks";
-import {setPing, setPong} from "../../features/counter.slice";
+import {useAppSelector, useAppDispatch} from "../../slices/hooks";
+import {setPing, setPong} from "../../slices/counter.slice";
 
 
 function Home() {

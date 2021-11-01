@@ -1,6 +1,6 @@
 import {Button, CssBaseline} from "@mui/material";
-import {useAppDispatch, useAppSelector} from "../../features/hooks";
-import {toggleLogin} from "../../features/login.slice";
+import {useAppDispatch, useAppSelector} from "../../slices/hooks";
+import {toggleLogin} from "../../slices/login.slice";
 
 const Login = () => {
     let dispatch = useAppDispatch();
