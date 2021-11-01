@@ -6,11 +6,15 @@ import App from './App';
 import {useAppDispatch} from "./features/hooks";
 import reportWebVitals from './reportWebVitals';
 import {store} from './features/store'
+import {theme} from './content/helpers'
+import {ThemeProvider} from "@emotion/react";
 
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
-            <App/>
+            <ThemeProvider theme={theme}>
+                <App/>
+            </ThemeProvider>
         </Provider>
     </React.StrictMode>,
     document.getElementById('root')
