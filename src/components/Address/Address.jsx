@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useState } from "react";
-//import { useMoralisDapp } from "../../providers/MoralisDappProvider/MoralisDappProvider";
-import { useMoralisDapp } from "src/Moralis/MoralisDappProvider/MoralisDappProvider";
-import { getEllipsisTxt } from "src/Moralis/helpers/formatters";
-import Blockie from "src/Moralis/components/Blockie";
+import { useMoralisDapp } from "../../Moralis/MoralisDappProvider/MoralisDappProvider";
+import { getEllipsisTxt } from "../../Moralis/helpers/formatters";
+import Blockie from "../../Moralis/components/Blockie";
+
 import "./identicon.css";
 
 const styles = {
@@ -26,12 +26,15 @@ function Address(props) {
   const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
-    setAddress(walletAddress);
+    setAddress('0x9C109Df3682aDC6E7a7B0956E93120862dD87248')
+    //setAddress(walletAddress);
   }, [walletAddress]);
 
   if (!address) return null;
 
   const Copy = () => (
+      <>
+        <h1>aaa</h1>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="26"
@@ -53,13 +56,13 @@ function Address(props) {
       <path d="M18 17h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h4l5 5v7a2 2 0 0 1 -2 2z" />
       <path d="M16 17v2a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2" />
       <title id="copy-address">Copy Address</title>
-    </svg>
+    </svg></>
   );
 
   return (
     <div style={styles.address}>
-      <p>{props.size ? getEllipsisTxt(address, props.size) : address}</p>
-      {props.avatar && <Blockie address={address} size={7} />}
+      <p>{ getEllipsisTxt(address, 10)}</p>
+      {<Blockie address={address} size={7} />}
       {props.copyable && (isClicked ? <Check /> : <Copy />)}
     </div>
   );

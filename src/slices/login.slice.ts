@@ -5,7 +5,7 @@ export interface CounterState {
 }
 
 const initialState: CounterState = {
-    loggedIn: false,
+    loggedIn: true,
 };
 
 export const counterSlice = createSlice({

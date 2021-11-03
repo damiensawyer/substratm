@@ -5,6 +5,7 @@ const Home = () => (
         <header className="App-header">
             <h1>about</h1>
             <Address />
+            
         </header>
     </div>
 );
