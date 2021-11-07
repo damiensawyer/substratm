@@ -15,7 +15,7 @@ const Login = () => {
 
 
             <h2>Moralis</h2>
-            <Button variant="contained" onClick={() => authenticate({ signingMessage: "Hello World!" })}>Login with Metamask</Button>
+            <Button variant="contained" onClick={() => authenticate({ signingMessage: "Hello Substratm!" })}>Login with Metamask</Button>
         </header>
     </div>
     
