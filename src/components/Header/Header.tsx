@@ -44,6 +44,7 @@ const StyledHeader = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // margin: 0 12px;
+  margin-bottom: 15px;
+  
 `;
 export default Header;

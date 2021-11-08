@@ -17,7 +17,7 @@ export const SubstramLogo = () => {
   );
 };
 const StyledTypographyLogo = styled.div`
-  margin: 10px;
+  margin: 15px;
 `;
 const StyledLogo = styled.img`
   height: 40vmin;

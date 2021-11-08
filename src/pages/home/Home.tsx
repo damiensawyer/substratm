@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import './Home.css';
 import { useAppSelector, useAppDispatch } from '../../slices/hooks';
-import { setPing, setPong } from '../../slices/counter.slice';
-
+import { setPing } from '../../slices/counter.slice';
+import styled from 'styled-components';
 import { Logo } from '../../content/logo';
 function Home() {
   let pingValue = useAppSelector((x) => x.counterSlice.pingValue);
@@ -14,20 +13,18 @@ function Home() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <Logo />
-        <a
-          className="App-link"
-          target="_blank"
-          href="https://chain.link/hackathon"
-        >
-          <pre>https://chain.link/hackathon</pre>
-        </a>
-        <pre>dev {pingValue}</pre>
-      </header>
-    </div>
+    <>
+      <Logo />
+      <StyledLink target="_blank" href="https://chain.link/hackathon">
+        <pre>https://chain.link/hackathon</pre>
+      </StyledLink>
+      <pre>dev {pingValue}</pre>
+    </>
   );
 }
+
+const StyledLink = styled.a`
+  color: #61dafb;
+`;
 
 export default Home;
