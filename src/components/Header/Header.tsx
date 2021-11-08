@@ -2,12 +2,12 @@ import { Button } from '@mui/material';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { Toolbar } from '@material-ui/core';
 import { useAppSelector } from '../../slices/hooks';
 import { SubstramLogo } from '../../content/logo';
+import MetamaskLogin from '../MetamaskLogin/MetamaskLogin';
 
 const Header = () => {
-  const [example, setExample] = useState('primary');
   const isLoggedIn = useAppSelector((x) => x.loginSlice.loggedIn);
 
   return (
@@ -23,24 +23,23 @@ const Header = () => {
             About
           </Button>
         )}
-        {!isLoggedIn && (
-          <Button variant="contained" color="secondary" href="/login">
-            Login
-          </Button>
-        )}
+        <MetamaskLogin />
       </StyledToolbar>
-      
+
       <SubstramLogo />
     </StyledHeader>
   );
 };
-const StyledToolbar = styled(Toolbar)`
 
+const StyledToolbar = styled(Toolbar)`
   & > * {
     align-items: center;
     margin-right: 10px;
+    min-width: calc(100% / 3);
+    max-height: 50%;
   }
 `;
+
 const StyledHeader = styled.nav`
   display: flex;
   justify-content: space-between;
