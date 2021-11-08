@@ -29,7 +29,6 @@ function App() {
       <Header />
       <Switch>
         <Route exact path="/" render={() => <h1>Welcome!</h1>} />
-        <Route path='/a' component={Home}/>
         {isLoggedIn ? (
           <>
             <Route path="/home" component={Home} />
