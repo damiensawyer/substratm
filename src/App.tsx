@@ -1,9 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NavigationBar from './components/navigation/navigationBar';
 import './App.css';
 import { useAppSelector, useAppDispatch } from './slices/hooks';
@@ -16,7 +12,7 @@ import UnAuthenticatedView from './pages/unauthenticated/UnAuthenticatedView';
 function App() {
   let isStarted = useAppSelector((x) => x.counterSlice.isStarted);
   let isLoggedIn = useAppSelector((x) => x.loginSlice.loggedIn);
-  
+
   let dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -24,20 +20,26 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <div className="App">
       <NavigationBar />
       <Header />
-      <Switch>
-        <Route exact path="/" render={() => <h1>Welcome!</h1>} />
-        {isLoggedIn ? (
-          <>
-            <Route path="/home" component={Home} />
-            <Route path="/about" component={About} />
-            <Route render={() => <h1>404: page not found</h1>} />
-          </>
-        ) : <Route component={UnAuthenticatedView}/>}
-      </Switch>
-    </Router>
+      <div className="App-header">
+        <Router>
+          <Switch>
+            <Route exact path="/" render={() => <h1>Welcome!</h1>} />
+            {isLoggedIn ? (
+              <>
+                <Route path="/home" component={Home} />
+                <Route path="/about" component={About} />
+                <Route render={() => <h1>404: page not found</h1>} />
+              </>
+            ) : (
+              <Route component={UnAuthenticatedView} />
+            )}
+          </Switch>
+        </Router>
+      </div>
+    </div>
   );
 }
 

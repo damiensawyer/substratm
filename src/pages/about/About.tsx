@@ -1,13 +1,10 @@
-import Address from "../../components/Address/Address";
+import Address from '../../components/Address/Address';
 
-const Home = () => (
-    <div className="App">
-        <header className="App-header">
-            <h1>about</h1>
-            <Address />
-            
-        </header>
-    </div>
+const About = () => (
+  <>
+    <h1>About</h1>
+    <Address />
+  </>
 );
 
-export default Home;
+export default About;
