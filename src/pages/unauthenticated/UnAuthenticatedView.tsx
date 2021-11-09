@@ -1,13 +1,10 @@
 import MetamaskLogin from '../../components/MetamaskLogin/MetamaskLogin';
-import logo from '../../content/loginHelp.png'
 import styled from 'styled-components';
 const UnAuthenticatedView = () => (
   <>
   <header className="App-header">
-    <h3>Login To View This Page</h3>
+    <h3>Please Login To View This Page</h3>
     <MetamaskLogin />
-    <p>If you have multiple wallets connected to Metamask, click the connected button and set to active the one you wish to use before connecting Substratm. </p>
-    <StyledLogo src={logo} alt="login helper" />
     </header>
     </>
   
