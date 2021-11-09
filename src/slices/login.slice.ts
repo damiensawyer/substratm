@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export interface CounterState {
+export interface LoginState {
   loggedIn: boolean;
 }
 
-const initialState: CounterState = {
+const initialState: LoginState = {
   loggedIn: false,
 };
 

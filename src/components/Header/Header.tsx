@@ -1,41 +1,46 @@
-import { Button } from "@mui/material";
+import {Button, Chip} from "@mui/material";
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { Toolbar } from "@material-ui/core";
-import { useAppSelector } from "../../slices/hooks";
-import { SubstramLogo } from "../../content/logo";
+import {Link} from "react-router-dom";
+import {Toolbar} from "@material-ui/core";
+import {useAppSelector} from "../../slices/hooks";
+import {SubstramLogo} from "../../content/logo";
 import MetamaskLogin from "../MetamaskLogin/MetamaskLogin";
 
 const Header = () => {
-  const isLoggedIn = useAppSelector((x) => x.loginSlice.loggedIn);
-  const isDevMode = useAppSelector((x) => x.devModeSlice.isDevMode);
+    const isLoggedIn = useAppSelector((x) => x.loginSlice.loggedIn);
+    const isDevMode = useAppSelector((x) => x.devModeSlice.isDevMode);
 
-  return (
-    <StyledHeader>
-      <StyledToolbar>
-        {isDevMode && <>Logged In:{isLoggedIn ? "yes" : "no"}</>}
-        {/* <Link to="/home" className="button">Home</Link>
-        <Link to="/about">About</Link> */}
-        {isLoggedIn && (
-          // https://stackoverflow.com/a/51642640/494635
-          <Button component={Link} to="/home" variant="contained" color="secondary" href="/home">
-          Home
-        </Button>    
-        )}
+    return (
+        <StyledHeader>
+            <StyledToolbar>
+                {isDevMode && <Chip label={`Logged In:${isLoggedIn ? "yes" : "no"}`} />}
 
-      {isLoggedIn && (
-          
-          <Button component={Link} to="/about" variant="contained" color="secondary" href="/home">
-          About
-        </Button>    
-        )}
-        <MetamaskLogin />
-      </StyledToolbar>
+                {isLoggedIn && (
+                    // https://stackoverflow.com/a/51642640/494635
+                    <Button component={Link} to="/home" variant="contained" color="secondary" href="/home">
+                        Home
+                    </Button>
+                )}
 
-      <SubstramLogo />
-    </StyledHeader>
-  );
+                {isLoggedIn && (
+                    <Button component={Link} to="/about" variant="contained" color="secondary" href="/home">
+                        About
+                    </Button>
+                )}
+
+                {isLoggedIn && isDevMode && (
+                    <Button component={Link} to="/scratchpad" variant="contained" color="secondary" href="/scratchpad">
+                        Scratch Pad
+                    </Button>
+                )}
+
+                <MetamaskLogin/>
+            </StyledToolbar>
+
+            <SubstramLogo/>
+        </StyledHeader>
+    );
 };
 
 const StyledToolbar = styled(Toolbar)`
