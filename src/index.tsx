@@ -13,8 +13,23 @@ import { MoralisProvider } from 'react-moralis';
 import { BrowserRouter } from 'react-router-dom';
 
 // These are read from the .env file. 
-const APP_ID = (process.env.REACT_APP_MORALIS_APPLICATION_ID as string); 
-const SERVER_URL = (process.env.REACT_APP_MORALIS_SERVER_URL as string);
+// const APP_ID = (process.env.REACT_APP_MORALIS_APPLICATION_ID as string); 
+// const SERVER_URL = (process.env.REACT_APP_MORALIS_SERVER_URL as string);
+
+/**
+ Ed and Lilly, the code above successully reads the .env file on my machine... but I can't get it working on the server (we're we're reading from the environment variables in linux?)
+ I read a stack of stuff like
+ https://dev.to/jam3/managing-env-variables-for-provisional-builds-h37
+ https://create-react-app.dev/docs/adding-custom-environment-variables/
+ https://tacomanator.medium.com/environments-with-create-react-app-7b645312c09d
+ 
+ .... but am still stuck. Perhaps we can come back to it or just hard code it. 
+ The site is hosted via nginx on Debian. 
+ */
+
+const APP_ID = 'p9s6FPKleg69I1myRSx8pTDboCsouzoXCj4M5Osw'; 
+const SERVER_URL = 'https://42sf9cpyfott.usemoralis.com:2053/server';
+
 
 ReactDOM.render(
   <React.StrictMode>
