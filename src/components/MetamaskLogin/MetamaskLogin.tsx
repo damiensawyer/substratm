@@ -47,6 +47,8 @@ const MetamaskLogin = () => {
   }, [isLoggedIn]);
 
   return (
+    <>
+    
     <Button
       variant="contained"
       color="secondary"
@@ -59,6 +61,8 @@ const MetamaskLogin = () => {
         ? 'Disconnect'
         : 'Connect and Log In'}
     </Button>
+    
+    </>
   );
 };
 export default MetamaskLogin;

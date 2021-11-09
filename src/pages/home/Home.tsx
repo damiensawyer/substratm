@@ -15,10 +15,9 @@ function Home() {
   // const SERVER_URL = (process.env.REACT_APP_MORALIS_SERVER_URL as string);
   const damien = (process.env.DAMIEN as string);
   const { authenticate, isAuthenticated, user } = useMoralis();
-  var u: string = JSON.stringify(user, undefined, 2)
+  
   useEffect(() => {
     if (!isStarted) dispatch(setPing())
-    u = JSON.stringify(user)
   }, []);
 
   return (
@@ -30,7 +29,7 @@ function Home() {
       <pre>My string: {damien}</pre>
       {/*<pre>dev {pingValue}</pre>*/}
       <pre>logged In {isLoggedIn ? 'yes' : 'no'}</pre>
-      <pre className={'small'}>user Info {u}</pre>
+      
     </>
   );
 }
