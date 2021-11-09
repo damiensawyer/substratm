@@ -20,7 +20,7 @@ export const SubstramLogo = () => {
     const dispatch = useAppDispatch();
     return (
         <StyledTypographyLogo>
-            <Typography variant="h2" component="h3" onClick={() => dispatch(tapLogoForDevMode())}>
+            <Typography variant="h2" component="h3" className={'noselect'} onClick={() => dispatch(tapLogoForDevMode())}>
                 SUBSTRATM
             </Typography>
         </StyledTypographyLogo>
