@@ -1,5 +1,11 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { Component, useEffect } from 'react';
+
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import NavigationBar from './components/navigation/navigationBar';
 import './App.css';
 import { useAppSelector, useAppDispatch } from './slices/hooks';
@@ -27,20 +33,24 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/" render={() => <h1>Welcome!</h1>} />
-            {isLoggedIn ? (
-              <>
-                <Route path="/home" component={Home} />
-                <Route path="/about" component={About} />
-                <Route render={() => <h1>404: page not found</h1>} />
-              </>
-            ) : (
-              <Route component={UnAuthenticatedView} />
-            )}
+            <Route path="/login" component={UnAuthenticatedView} />
+            <Route path="/home" render={() => requireAuth(Home, isLoggedIn)} />
+            <Route
+              path="/about"
+              render={() => requireAuth(About, isLoggedIn)}
+            />
+            <Route path="*">404</Route>
           </Switch>
         </Router>
       </div>
     </div>
   );
+}
+function requireAuth(Component: any, isLoggedIn: boolean) {
+  if (!isLoggedIn) {
+    return <Redirect to="/login" />;
+  }
+  return Component;
 }
 
 export default App;
