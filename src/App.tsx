@@ -31,7 +31,7 @@ function App() {
               <>
                 <Route path="/home" component={Home} />
                 <Route path="/about" component={About} />
-                <Route render={() => <h1>404: page not found</h1>} />
+                {/* <Route render={() => <h1>404: page not found</h1>} /> */}
               </>
             ) : (
               <Route component={UnAuthenticatedView} />
