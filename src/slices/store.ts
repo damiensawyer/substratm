@@ -2,13 +2,15 @@
 import {combineEpics, createEpicMiddleware} from "redux-observable";
 import {ignoreElements, tap} from "rxjs";
 import counterSlice,{epics as counterEpics} from "./counter.slice";
+import devModeSlice,{epics as devModeEpics} from "./devMode.slice";
 import loginSlice,{epics as loginEpics} from "./login.slice";
 const rxjsEpicMiddleware = createEpicMiddleware();
 
 export const store = configureStore({
     reducer: {
         counterSlice: counterSlice,
-        loginSlice: loginSlice
+        loginSlice: loginSlice,
+        devModeSlice:devModeSlice
     },
     middleware: getDefaultMiddleware => {
         // https://redux-toolkit.js.org/api/getDefaultMiddleware  does different defaults for dev and prod. Includes redux-thunk in all
@@ -26,7 +28,8 @@ function logEpic(actions: any) {
 export const rootEpic = combineEpics(
     //logEpic, 
     ...(counterEpics as any),
-    ...(loginEpics as any)
+    ...(loginEpics as any),
+    ...(devModeEpics as any),
 );
 rxjsEpicMiddleware.run(rootEpic)
 

@@ -9,10 +9,12 @@ import MetamaskLogin from '../MetamaskLogin/MetamaskLogin';
 
 const Header = () => {
   const isLoggedIn = useAppSelector((x) => x.loginSlice.loggedIn);
+  const isDevMode = useAppSelector((x) => x.devModeSlice.isDevMode);
 
   return (
     <StyledHeader>
       <StyledToolbar>
+         {isDevMode && <>Logged In:{isLoggedIn ? 'yes' : 'no'}</>}
         {isLoggedIn && (
           <Button variant="contained" color="secondary" href="/home">
             Home
