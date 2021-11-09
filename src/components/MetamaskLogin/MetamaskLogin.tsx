@@ -1,6 +1,10 @@
 import { Button } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../../slices/hooks';
-import { login, logout as logoutAction, toggleLogin } from '../../slices/login.slice';
+import { useAppDispatch } from '../../slices/hooks';
+import {
+  login,
+  logout as logoutAction,
+  toggleLogin,
+} from '../../slices/login.slice';
 import { useMoralis } from 'react-moralis';
 import { useEffect } from 'react';
 const MetamaskLogin = () => {
@@ -21,12 +25,9 @@ const MetamaskLogin = () => {
     await authenticate();
   };
   const signInOrSignOut = () => {
-    console.log('signing in or out');
-    if(!isWeb3Enabled || !isAuthenticated){
-      console.log('signing in');
+    if (!isWeb3Enabled || !isAuthenticated) {
       enableAndAuthenticate();
     } else {
-      console.log('signing out');
       logout();
     }
   };
@@ -39,10 +40,10 @@ const MetamaskLogin = () => {
 
   useEffect(() => {
     dispatch(toggleLogin());
-    if(isLoggedIn) {
+    if (isLoggedIn) {
       dispatch(login());
     } else {
-      dispatch(logoutAction())
+      dispatch(logoutAction());
     }
   }, [isLoggedIn]);
 
