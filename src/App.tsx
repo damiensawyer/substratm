@@ -15,9 +15,9 @@ function App() {
 
   let dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (!isStarted) dispatch(setPing());
-  }, []);
+  //useEffect(() => {
+    // if (!isStarted) dispatch(setPing());
+  //}, []);
 
   return (
     <div className="App">

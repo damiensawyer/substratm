@@ -8,9 +8,9 @@ function Home() {
   let isStarted = useAppSelector((x) => x.counterSlice.isStarted);
   let dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (!isStarted) dispatch(setPing());
-  }, []);
+  // useEffect(() => {
+  //   if (!isStarted) dispatch(setPing());
+  // }, []);
 
   return (
     <>
