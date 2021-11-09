@@ -1,27 +1,40 @@
-import { Button } from '@mui/material';
-import React from 'react';
-import styled from 'styled-components';
-
-import { Toolbar } from '@material-ui/core';
-import { useAppSelector } from '../../slices/hooks';
-import { SubstramLogo } from '../../content/logo';
-import MetamaskLogin from '../MetamaskLogin/MetamaskLogin';
+import { Button } from "@mui/material";
+import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { Toolbar } from "@material-ui/core";
+import { useAppSelector } from "../../slices/hooks";
+import { SubstramLogo } from "../../content/logo";
+import MetamaskLogin from "../MetamaskLogin/MetamaskLogin";
 
 const Header = () => {
   const isLoggedIn = useAppSelector((x) => x.loginSlice.loggedIn);
+  const isDevMode = useAppSelector((x) => x.devModeSlice.isDevMode);
 
   return (
     <StyledHeader>
       <StyledToolbar>
+        {isDevMode && <>Logged In:{isLoggedIn ? "yes" : "no"}</>}
+        {/* <Link to="/home" className="button">Home</Link>
+        <Link to="/about">About</Link> */}
         {isLoggedIn && (
-          <Button variant="contained" color="secondary" href="/home">
-            Home
-          </Button>
+          // https://stackoverflow.com/a/51642640/494635
+          <Link to="/home">
+            <Button variant="contained" color="secondary" href="/home">
+              Home
+            </Button>
+          </Link>
         )}
+
+      <Button component={Link} to="/home" variant="contained" color="secondary" href="/home">
+              Home22
+            </Button>
         {isLoggedIn && (
-          <Button variant="contained" color="secondary" href="/about">
-            About
-          </Button>
+          <Link to="/about">
+            <Button variant="contained" color="secondary" href="/about">
+              About
+            </Button>
+          </Link>
         )}
         <MetamaskLogin />
       </StyledToolbar>

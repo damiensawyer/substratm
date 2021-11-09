@@ -10,6 +10,7 @@ import { store } from './slices/store';
 import { theme } from './content/helpers';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { MoralisProvider } from 'react-moralis';
+import { BrowserRouter } from 'react-router-dom';
 
 // I think that these are set in .env in the root folder. The .env file is in .gitignore, we each need to set our own. Are these read using this?? https://github.com/motdotla/dotenv. I don't see dotenv included
 const APP_ID = (process.env.REACT_APP_MORALIS_APPLICATION_ID as string); 
@@ -26,7 +27,9 @@ ReactDOM.render(
         <MoralisDappProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <App />
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
           </ThemeProvider>
         </MoralisDappProvider>
       </MoralisProvider>

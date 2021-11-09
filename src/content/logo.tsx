@@ -2,9 +2,17 @@ import React from 'react';
 import logo from './substratmlogo.png';
 import { Typography } from '@mui/material';
 import styled from 'styled-components';
+import { useAppDispatch } from '../slices/hooks';
+import { tapLogoForDevMode as tapLogoForDevMode  } from '../slices/devMode.slice';
+import { Console } from 'console';
+
+export const imageClick = () => {
+  console.log('Click!!!!');
+}  
 
 export const Logo = () => {
-  return <StyledLogo src={logo} className="App-logo" alt="logo" />;
+  const dispatch = useAppDispatch();
+  return <StyledLogo src={logo} className="App-logo" alt="logo" onClick={() => dispatch(tapLogoForDevMode())} />;
 };
 
 export const SubstramLogo = () => {
@@ -21,7 +29,6 @@ const StyledTypographyLogo = styled.div`
 `;
 const StyledLogo = styled.img`
   height: 40vmin;
-  pointer-events: none;
 `;
 
 export default Logo;
