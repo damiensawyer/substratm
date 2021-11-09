@@ -19,22 +19,16 @@ const Header = () => {
         <Link to="/about">About</Link> */}
         {isLoggedIn && (
           // https://stackoverflow.com/a/51642640/494635
-          <Link to="/home">
-            <Button variant="contained" color="secondary" href="/home">
-              Home
-            </Button>
-          </Link>
+          <Button component={Link} to="/home" variant="contained" color="secondary" href="/home">
+          Home
+        </Button>    
         )}
 
-      <Button component={Link} to="/home" variant="contained" color="secondary" href="/home">
-              Home22
-            </Button>
-        {isLoggedIn && (
-          <Link to="/about">
-            <Button variant="contained" color="secondary" href="/about">
-              About
-            </Button>
-          </Link>
+      {isLoggedIn && (
+          
+          <Button component={Link} to="/about" variant="contained" color="secondary" href="/home">
+          About
+        </Button>    
         )}
         <MetamaskLogin />
       </StyledToolbar>
