@@ -15,14 +15,23 @@ const About = () => {
         user
     } = useMoralis();
     var u: string = JSON.stringify(user, undefined, 2)
-    let currentUser = Moralis.User.current()
+
+    let moralisData = {
+        User:Moralis.User.current(),
+        serverURL:Moralis.serverURL
+    }
+    //let currentUser = Moralis.User.current() // This is quiv
+
     
+
+
+
     return <>
         <h1>About</h1>
         <Address/>
-        <pre className={'small'}>user Info {u}</pre>
+        {/* <pre className={'small'}>user Info {u}</pre> */}
 
-        <pre className={'small'}>user 2 Info {JSON.stringify(currentUser, null, 2)}</pre>
+        <pre className={'small'}>user 2 Info {JSON.stringify(moralisData, null, 2)}</pre>
     </>
 };
 
