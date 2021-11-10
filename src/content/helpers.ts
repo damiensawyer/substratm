@@ -57,7 +57,7 @@ export const theme = createTheme({
         },
         background: {
             default: BACKGROUND_PURPLE,
-            paper: BACKGROUND_LIGHT_PURPLE,
+            paper: LIGHT_PURPLE,
         },
         text: {
             secondary: '#f3eded',

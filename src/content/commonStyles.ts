@@ -1,4 +1,5 @@
 ﻿import {createTheme, Paper} from "@mui/material";
+import React from "react";
 import styled from "styled-components";
 
 /*
@@ -22,7 +23,24 @@ export const SmallPre = styled.pre`
   color:black;
 `;
 
+// export const MyPaper = styled(Paper)(() => ({
+//     fontSize:"10pt",
+//     height:"200px",
+//     width:"80%",
+//     overflow:"scroll"
+// }));
 
+// Another way to do it with styled. 
+export const MyPaper = styled(Paper)`
+    font-size:10pt;
+    overflow:scroll;
+    height:200px;
+    width:80%;
+    margin-top:2em;
+`;
+
+
+    
 export const StyledPaper = styled(Paper)(() => ({
     fontSize:"10pt",
     height:"200px",

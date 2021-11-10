@@ -1,10 +1,9 @@
 import Moralis from "moralis";
 import React, {useEffect, useState} from "react";
 import {useMoralis, useMoralisWeb3Api, useMoralisWeb3ApiCall} from "react-moralis";
-import {sample} from "rxjs";
 import Address from '../../components/Address/Address';
-import Polygon = Moralis.Polygon;
-import {SmallPre, StyledPaper} from "../../content/commonStyles";
+import {MyPaper, SmallPre, StyledPaper} from "../../content/commonStyles";
+import {RaisedPaper, RaisedPaperCode} from "../../content/componentStyles";
 
 const About = () => {
     const {
@@ -36,8 +35,6 @@ const About = () => {
     }
     
     useEffect(()=>{fetchBlock()})
-    
-    
 
     // note, these fail if you hit f5, even though we're connected to meta
     const {data:d1, isFetching:f1, error:e1} = useMoralisWeb3ApiCall(getNativeBalance) // https://github.com/MoralisWeb3/react-moralis#resolve-data-with-usemoralisweb3apicall mask. 
@@ -59,7 +56,6 @@ const About = () => {
         {!!d1 && !!d1.balance && <>Native Balance is {d1.balance}</>}
         </div>
 
-
         <div>
             {f2 && <>Fetching Token Balances</>}
             {!!d2 && <>Token Balance Count: {d2.length}</> }
@@ -67,12 +63,12 @@ const About = () => {
         </div>
         
         <h3>Sample of reading a block from chain</h3>
-        <SmallPre>SampleBlock: {sampleBlock}</SmallPre>
+        <RaisedPaperCode><>{sampleBlock}</></RaisedPaperCode>
         
         <h3>Reading Custom Setting from .env file</h3>
         <p>custom setting (damien): {damien}</p>
         <Address/>
-        <SmallPre className={'small'}>user 2 Info {JSON.stringify(moralisData, null, 2)}</SmallPre>
+        <RaisedPaperCode><>user 2 Info {JSON.stringify(moralisData, null, 2)}</></RaisedPaperCode>
     </>
 };
 
