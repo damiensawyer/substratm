@@ -27,8 +27,9 @@ import { BrowserRouter } from 'react-router-dom';
  The site is hosted via nginx on Debian. 
  */
 
-const APP_ID = 'p9s6FPKleg69I1myRSx8pTDboCsouzoXCj4M5Osw'; 
-const SERVER_URL = 'https://42sf9cpyfott.usemoralis.com:2053/server';
+// Rinkby
+const APP_ID = 'DmPC1YInapx8x0Uvpqrjs39yD3tDQrFmrZLojihU'; 
+const SERVER_URL = 'https://sq3oo5ayiubc.usemoralis.com:2053/server';
 
 
 ReactDOM.render(

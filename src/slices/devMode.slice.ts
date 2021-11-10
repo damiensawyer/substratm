@@ -8,7 +8,7 @@ export interface DevModeState {
 }
 
 const initialState: DevModeState = {
-  isDevMode:false
+  isDevMode:true
 };
 
 export const devModeSlice = createSlice({
