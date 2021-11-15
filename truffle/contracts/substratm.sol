@@ -35,6 +35,7 @@ contract SubstratmContract is ERC1155, Ownable {
     function burn(address account,uint256 id,uint256 amount) public
     {
         require(msg.sender == account);
+        emit CoinMinted(account, id, amount );
         _burn(account,id, amount);
     }
 
