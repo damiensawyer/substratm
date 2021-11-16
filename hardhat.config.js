@@ -20,6 +20,10 @@ module.exports = {
           url: `https://speedy-nodes-nyc.moralis.io/72216de496ff399faf1f925a/eth/ropsten`,
           ...accounts
         },
+        ganash: {
+          url: `HTTP://127.0.0.1:7545`,
+          ...accounts
+        },
         rinkeby: {
             url: "https://speedy-nodes-nyc.moralis.io/72216de496ff399faf1f925a/eth/rinkeby",
             ...accounts
