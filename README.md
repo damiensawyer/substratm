@@ -65,6 +65,13 @@ ROPSTEN: https://ropsten.etherscan.io/address/<INSERT-ADDRESS-HERE>
 
 ### 5. Verify your contract on Etherscan
     
+run ```npx hh verify --network ropsten <INSERT-CONTRACT-ADDRESS-HERE>```
+
+#### Troubleshooting Contract Verification
+``` 
+- Is the contract deployment finished yet? If no, try again once it's fully deployed.   
+- otherwise, remove the artifacts/ package: rm -rf artifacts then run again 
+``` 
 
 
 ## Libraries
