@@ -70,7 +70,7 @@ run ```npx hh verify --network ropsten <INSERT-CONTRACT-ADDRESS-HERE>```
 #### Troubleshooting Contract Verification
 ``` 
 - Is the contract deployment finished yet? If no, try again once it's fully deployed.   
-- otherwise, remove the artifacts/ package: rm -rf artifacts then run again 
+- otherwise, remove the artifacts/ package: rm -rf artifacts then deploy and verify again 
 ``` 
 
 
