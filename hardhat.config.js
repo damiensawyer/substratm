@@ -1,7 +1,7 @@
-
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-etherscan");
 require('dotenv').config();
+
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
