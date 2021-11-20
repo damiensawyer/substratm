@@ -3,6 +3,7 @@ pragma solidity ^0.8.0;
 import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
 
 contract ChainlinkTwitter is ChainlinkClient {
+    using Chainlink for Chainlink.Request;
 
     address private oracle;
     bytes32 private jobId;
@@ -10,7 +11,7 @@ contract ChainlinkTwitter is ChainlinkClient {
     uint256 public statusCode;
 
     //only the contract owner should be able to tweet
-    address payable owner;
+    address public owner;
     modifier onlyOwner {
         require(msg.sender == owner);
         _;
@@ -26,9 +27,9 @@ contract ChainlinkTwitter is ChainlinkClient {
     //tweets the supplied string
     function tweet(string memory twt) public onlyOwner{
         Chainlink.Request memory req = buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
-        //req.add("endpoint", "https://api.twitter.com/1.1/statuses/update.json");
+        req.add("endpoint", "https://api.twitter.com/1.1/statuses/update.json");
         req.add("status", twt);
-        req.add("copyPath", "statusCode")
+        req.add("copyPath", "statusCode");
         sendChainlinkRequestTo(oracle, req, fee);
     }
 
