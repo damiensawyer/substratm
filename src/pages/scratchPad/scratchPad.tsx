@@ -3,9 +3,11 @@ import {Button, TextField} from "@mui/material";
 import Moralis from "moralis";
 import React, {useEffect, useState} from "react";
 import {useMoralis, useMoralisWeb3Api, useMoralisWeb3ApiCall} from "react-moralis";
+
 import Address from '../../components/Address/Address';
 import {MyPaper, SmallPre, StyledPaper} from "../../content/commonStyles";
 import {RaisedPaper, RaisedPaperCode} from "../../content/componentStyles";
+import {SubstratmNFTABI} from "../../functions/SubstratmNFTABI";
 declare const ethers:any
 const About = () => {
     const {
@@ -44,9 +46,23 @@ const About = () => {
     const mintNFT = async() => {
         let web3 = await Moralis.Web3.enableWeb3()
         let accounts = await web3.eth.getAccounts()
-        const contract = new web3.eth.Contract({type:'function'}, CONTRACT_ADDRESS)
-        const SubstratmNFT = await ethers.getContractFactory("SubstratmNFT");
         console.log('accounts', accounts)
+
+        // https://youtu.be/rd0TTLjQLy4?t=1152
+
+        const options = {
+            contractAddress: CONTRACT_ADDRESS,
+            functionName: "requestToMintNewSubstratmProfileNFT",
+            abi: SubstratmNFTABI,
+            params: {
+                twitterHandle: 'blahblah'
+            },
+        };
+        
+        let result = await Moralis.Web3.executeFunction(options)
+        console.log('result', result)
+        
+        
     }
     
     // note, these fail if you hit f5, even though we're connected to meta
