@@ -1,4 +1,5 @@
 import {Label} from "@material-ui/icons";
+import ReactJson from 'react-json-view';
 import {Button, TextField} from "@mui/material";
 import Moralis from "moralis";
 import React, {useEffect, useState} from "react";
@@ -26,6 +27,8 @@ const About = () => {
     const {account: {getNativeBalance, getTokenBalances}} = useMoralisWeb3Api()
     const Web3Api = useMoralisWeb3Api()
     const [sampleBlock, setSampleBlock] = useState('loading sample block....');
+    const [nftResult, setNftResult] = useState(null);
+    const [twitterHandle, setTwitterHandle] = useState({});
     
     
     const CONTRACT_ADDRESS = "0x78ef536b8Df28aCC8bB23D64784dbEB2331B787F"
@@ -49,20 +52,18 @@ const About = () => {
         console.log('accounts', accounts)
 
         // https://youtu.be/rd0TTLjQLy4?t=1152
-
         const options = {
             contractAddress: CONTRACT_ADDRESS,
             functionName: "requestToMintNewSubstratmProfileNFT",
             abi: SubstratmNFTABI,
             params: {
-                twitterHandle: 'blahblah'
+                twitterHandle: twitterHandle
             },
         };
         
         let result = await Moralis.Web3.executeFunction(options)
+        setNftResult(result)
         console.log('result', result)
-        
-        
     }
     
     // note, these fail if you hit f5, even though we're connected to meta
@@ -80,8 +81,9 @@ const About = () => {
         <h3>Minting NFT with SubstratmNFT.sol</h3>
         <div>
         
-            <TextField id="outlined-basic" label="Twitter Handle" variant="outlined" />
+            <TextField id="outlined-basic" label="Twitter Handle" variant="outlined" onChange={event => setTwitterHandle(event.target.value)} />
             <Button variant="contained" onClick={mintNFT}>Mint NFT</Button>
+            {!!nftResult && <><h5>Minted an NFT...</h5><RaisedPaperCode><ReactJson src={nftResult} theme="monokai" /></RaisedPaperCode></>}   
         </div>    
         
         <h3>Reading data from moralise web 3 api calls</h3>

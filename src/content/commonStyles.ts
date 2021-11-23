@@ -34,7 +34,7 @@ export const SmallPre = styled.pre`
 export const MyPaper = styled(Paper)`
     font-size:10pt;
     overflow:scroll;
-    height:200px;
+    height:400px;
     width:80%;
     margin-top:2em;
 `;
