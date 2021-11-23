@@ -28,7 +28,7 @@ function Home() {
       </StyledLink>
       <pre>My string: {damien}</pre>
       {/*<pre>dev {pingValue}</pre>*/}
-      <pre>logged In {isLoggedIn ? 'yes' : 'no'}</pre>
+      <pre>logged In{isLoggedIn ? 'yes' : 'no'}</pre>
       
     </>
   );
