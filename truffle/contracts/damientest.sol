@@ -53,13 +53,17 @@ contract SubstratmNFT is ERC721URIStorage, Ownable {
         string memory twitterHandle
     ) public {
         // TODO validate twitter handle
-        lastTokenId = lastTokenId + 1;
-        uint256 newId = lastTokenId;
-        
-        walletToProfileId[_msgSender()] = newId; // Lilly, I thought this made more sense because we can look up stuff for a given address, which we can read from metamask in the Front End.
-        profileIdToWallet[newId] = _msgSender();
-        _safeMint(_msgSender(), newId);
-                
+        if (!requestToMintNewSubstratmProfileNFT(_msgSender())
+        {
+            lastTokenId = lastTokenId + 1;
+            uint256 newId = lastTokenId;
+            
+            walletToProfileId[_msgSender()] = newId; // Lilly, I thought this made more sense because we can look up stuff for a given address, which we can read from metamask in the Front End.
+            profileIdToWallet[newId] = _msgSender();
+            _safeMint(_msgSender(), newId);
+         }       
+
+        // update if it was existing. 
         profiles[_msgSender()] = Profile({
                 twitterHandle: twitterHandle,
                 tokenId: newId
@@ -69,6 +73,11 @@ contract SubstratmNFT is ERC721URIStorage, Ownable {
     function readTwitterHandleForGivenAddress (address userAddress) public view returns (string memory) 
     {
         return profiles[userAddress].twitterHandle; // not sure what happens if we haven't minted yet and the mapping entry is 0. Are there null reference exceptions?
+    }
+
+    function nftExistsForAccount (address userAddress) public view returns (bool) 
+    {
+        return walletToProfileId[userAddress] != 0;
     }
 
 

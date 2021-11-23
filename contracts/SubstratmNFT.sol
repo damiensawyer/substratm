@@ -1,47 +1,46 @@
 // SPDX-License-Identifier: MIT
-// docs https://docs.openzeppelin.com/contracts/4.x/api/token/erc721
-// and... https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721URIStorage
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/access/Ownable.sol"; // https://docs.openzeppelin.com/contracts/2.x/access-control
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol"; // https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721URIStorage
 contract SubstratmNFT is ERC721URIStorage, Ownable {
     struct Profile {
         string twitterHandle;
+        uint256 tokenId;
     }
     // Base URI
     string private _baseURIextended;
 
-    mapping(address => uint256) walletToProfileId;
-    mapping(uint256 => address) public profileIdToOwnerAddress;
-    Profile[] public profiles;
-    uint256 internal fee;
+    mapping(address => uint256) public walletToProfileId;
+    mapping(uint256 => address) public profileIdToWallet;
+    mapping(address => Profile) public profiles;
     
-    constructor() ERC721("SubstratmNFT", "SBSTR") public { 
-        
+    
+    //address[] public profiles;
+    uint256 internal fee;
+    uint256 internal lastTokenId;
+    
+     constructor() ERC721("SubstratmNFT", "SBSTR") { 
+        lastTokenId = 0;
     }
     
     function getProfileMetadata(uint256 profileId)
     public
     view
-    returns (
-        string memory
-    )
+    returns (Profile  memory )
     {
         // TODO return all profile Metadata
-        return (
-            profiles[profileId].twitterHandle
-        );
+        return     profiles[profileIdToWallet[profileId]];
     }
 
     function updateSubstratmProfile(
-        uint256 profileId        
+        address userAddress,
+        string memory twitterHandle
     ) public {
-        require(
-            _isApprovedOrOwner(_msgSender(), profileId), "ERC721: updateSubstratmProfile caller is not owner nor approved"
-        );
-        // TODO: add functionality to update Substratm Profile
+        require(_isApprovedOrOwner(_msgSender(), walletToProfileId[userAddress]), "ERC721: updateSubstratmProfile caller is not owner nor approved"        );
+        profiles[_msgSender()].twitterHandle = twitterHandle;
     }
+    
     function setBaseURI(string memory baseURI_) external onlyOwner() {
         _baseURIextended = baseURI_;
     }
@@ -54,16 +53,34 @@ contract SubstratmNFT is ERC721URIStorage, Ownable {
         string memory twitterHandle
     ) public {
         // TODO validate twitter handle
-        uint256 newId = profiles.length;
-        
-        profiles.push(
-            Profile({
-                twitterHandle: twitterHandle
-            })
-        );
-        profileIdToOwnerAddress[newId] = msg.sender; // profile Id mapping to wallet Id
-        _safeMint(msg.sender, newId);
+        if (!requestToMintNewSubstratmProfileNFT(_msgSender())
+        {
+            lastTokenId = lastTokenId + 1;
+            uint256 newId = lastTokenId;
+            
+            walletToProfileId[_msgSender()] = newId; // Lilly, I thought this made more sense because we can look up stuff for a given address, which we can read from metamask in the Front End.
+            profileIdToWallet[newId] = _msgSender();
+            _safeMint(_msgSender(), newId);
+         }       
+
+        // update if it was existing. 
+        profiles[_msgSender()] = Profile({
+                twitterHandle: twitterHandle,
+                tokenId: newId
+            });
     }
+    
+    function readTwitterHandleForGivenAddress (address userAddress) public view returns (string memory) 
+    {
+        return profiles[userAddress].twitterHandle; // not sure what happens if we haven't minted yet and the mapping entry is 0. Are there null reference exceptions?
+    }
+
+    function nftExistsForAccount (address userAddress) public view returns (bool) 
+    {
+        return walletToProfileId[userAddress] != 0;
+    }
+
+
 
     function setTokenURI(uint256 profileId, string memory _profileURI) public {
         require(
