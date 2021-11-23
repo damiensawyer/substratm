@@ -74,9 +74,9 @@ contract SubstratmNFT is ERC721URIStorage, Ownable {
             });
     }
     
-    function readTwitterHandleForGivenAddress (address userAddress) public view returns (string memory) 
+    function readTwitterHandleForGivenAddress () public view returns (string memory) 
     {
-        return profiles[userAddress].twitterHandle; // not sure what happens if we haven't minted yet and the mapping entry is 0. Are there null reference exceptions?
+        return profiles[_msgSender()].twitterHandle; // not sure what happens if we haven't minted yet and the mapping entry is 0. Are there null reference exceptions?
     }
 
     function nftExistsForAccount (address userAddress) public view returns (bool) 
