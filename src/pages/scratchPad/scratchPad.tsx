@@ -31,9 +31,10 @@ const About = () => {
     const [nftResult, setNftResult] = useState(null);
     const [twitterHandle, setTwitterHandle] = useState({});
     const [nftMintedForAddress, setNftMintedForAddress] = useState<boolean | null>(null); // should re
+    const [twitterHandleRetrievedFromContract, setTwitterHandleRetrievedFromContract] = useState<string | null>(null);
 
 
-    const CONTRACT_ADDRESS = "0x78ef536b8Df28aCC8bB23D64784dbEB2331B787F"
+    const CONTRACT_ADDRESS = "0xA6e685493aC1F91b39d10348FcbeC3B0d98834F2"
 
     const getUserAddress = async () => {
         let web3 = await Moralis.Web3.enableWeb3()
@@ -77,6 +78,22 @@ const About = () => {
         setNftMintedForAddress(result as boolean)
         console.log('check address minted', result)
 
+    }    
+    
+        const loadTwitterHandle = async () => {
+        let userAddress = await getUserAddress()
+
+        let options = {
+            functionName: "readTwitterHandleForGivenAddress",
+            params: {
+                userAddress: userAddress
+            }, ...optionsCore
+        }
+
+        let result = await Moralis.Web3.executeFunction(options)
+        setTwitterHandleRetrievedFromContract(result as string)
+        console.log('retrieved Twitter Handle', result)
+
     }
 
 
@@ -112,34 +129,44 @@ const About = () => {
             <Button variant="contained" onClick={mintNFT}>Mint NFT</Button>
             {!!nftResult && <><h5>Minted an NFT...</h5><RaisedPaperCode><ReactJson src={nftResult} theme="monokai"/></RaisedPaperCode></>}
         </div>
+
+        <h3>Checking NFT Minted Status for current metamask account</h3>
         <div>
 
-            <Button variant="contained" onClick={mintNFT}>Check if Address Minted</Button>
-            {!!nftMintedForAddress  && <><h5>NFT Minted: </h5>{nftMintedForAddress} </>}
+            <Button variant="contained" onClick={checkIfNFTMintedForUser}>Check if Address Minted</Button>
+            {nftMintedForAddress !== null && <><h5>NFT Minted: </h5>{nftMintedForAddress ? 'yes, minted' : 'no, not minted'} </>}
         </div>
 
-        <h3>Reading data from moralise web 3 api calls</h3>
-
+        <h3>Read Twitter handlef from contract for current metamask account</h3>
         <div>
-            {f1 && <>Fetching Native Balances</>}
-            {!!d1 && !!d1.balance && <>Native Balance is {d1.balance}</>}
+
+            <Button variant="contained" onClick={loadTwitterHandle}>Read Twitter Handle from Contract</Button>
+            {twitterHandleRetrievedFromContract !== null && <><h5>Twitter Handle: </h5>{twitterHandleRetrievedFromContract} </>}
         </div>
+        
 
-        <div>
-            {f2 && <>Fetching Token Balances</>}
-            {!!d2 && <>Token Balance Count: {d2.length}</>}
-            {!!d2 && d2.map(x => <>Token {x.name} Balance is {x.balance}</>)}
-        </div>
-
-        <h3>Sample of reading a block from chain</h3>
-        <RaisedPaperCode><>{sampleBlock}</>
-        </RaisedPaperCode>
-
-        <h3>Reading Custom Setting from .env file</h3>
-        <p>custom setting (damien): {damien}</p>
-        <Address/>
-        <RaisedPaperCode><>user 2 Info {JSON.stringify(moralisData, null, 2)}</>
-        </RaisedPaperCode>
+        {/*<h3>Reading data from moralise web 3 api calls</h3>*/}
+        
+        {/*<div>*/}
+        {/*    {f1 && <>Fetching Native Balances</>}*/}
+        {/*    {!!d1 && !!d1.balance && <>Native Balance is {d1.balance}</>}*/}
+        {/*</div>*/}
+        
+        {/*<div>*/}
+        {/*    {f2 && <>Fetching Token Balances</>}*/}
+        {/*    {!!d2 && <>Token Balance Count: {d2.length}</>}*/}
+        {/*    {!!d2 && d2.map(x => <>Token {x.name} Balance is {x.balance}</>)}*/}
+        {/*</div>*/}
+        
+        {/*<h3>Sample of reading a block from chain</h3>*/}
+        {/*<RaisedPaperCode><>{sampleBlock}</>*/}
+        {/*</RaisedPaperCode>*/}
+        
+        {/*<h3>Reading Custom Setting from .env file</h3>*/}
+        {/*<p>custom setting (damien): {damien}</p>*/}
+        {/*<Address/>*/}
+        {/*<RaisedPaperCode><>user 2 Info {JSON.stringify(moralisData, null, 2)}</>*/}
+        {/*</RaisedPaperCode>*/}
     </>
 };
 
