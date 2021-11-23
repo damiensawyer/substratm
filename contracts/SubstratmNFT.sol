@@ -53,20 +53,24 @@ contract SubstratmNFT is ERC721URIStorage, Ownable {
         string memory twitterHandle
     ) public {
         // TODO validate twitter handle
-        if (!requestToMintNewSubstratmProfileNFT(_msgSender())
-        {
+        uint256 tokenId = 0;
+        if (!nftExistsForAccount(_msgSender())){
             lastTokenId = lastTokenId + 1;
-            uint256 newId = lastTokenId;
+            tokenId = lastTokenId;
             
-            walletToProfileId[_msgSender()] = newId; // Lilly, I thought this made more sense because we can look up stuff for a given address, which we can read from metamask in the Front End.
-            profileIdToWallet[newId] = _msgSender();
-            _safeMint(_msgSender(), newId);
-         }       
+            walletToProfileId[_msgSender()] = tokenId; // Lilly, I thought this made more sense because we can look up stuff for a given address, which we can read from metamask in the Front End.
+            profileIdToWallet[tokenId] = _msgSender();
+            _safeMint(_msgSender(), tokenId);
+         }  
+         else
+         {
+            tokenId = profiles[_msgSender()].tokenId;
+         }     
 
         // update if it was existing. 
         profiles[_msgSender()] = Profile({
                 twitterHandle: twitterHandle,
-                tokenId: newId
+                tokenId: tokenId
             });
     }
     

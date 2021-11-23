@@ -29,6 +29,7 @@ const About = () => {
     const [sampleBlock, setSampleBlock] = useState('loading sample block....');
     const [nftResult, setNftResult] = useState(null);
     const [twitterHandle, setTwitterHandle] = useState({});
+    const [nftMintedForAddress, setNftMintedForAddress] = useState<boolean | null>(null); // should re
     
     
     const CONTRACT_ADDRESS = "0x78ef536b8Df28aCC8bB23D64784dbEB2331B787F"
@@ -50,17 +51,33 @@ const About = () => {
     const optionsCore = {
         contractAddress: CONTRACT_ADDRESS,
         abi: SubstratmNFTABI,
-        params: {
-            twitterHandle: twitterHandle
-        },
+        
     };
 
+    const checkIfNFTMintedForUser = async() => {
+        let web3 = await Moralis.Web3.enableWeb3()
+        let accounts = await web3.eth.getAccounts()
+
+        let options = {functionName: "nftExistsForAccount",
+            params: {
+                userAddress: twitterHandle
+            },...optionsCore}
+
+        let result = await Moralis.Web3.executeFunction(options)
+        setNftResult(result)
+        console.log('result', result)
+    }
+    
+    
     const mintNFT = async() => {
         let web3 = await Moralis.Web3.enableWeb3()
         let accounts = await web3.eth.getAccounts()
         console.log('accounts', accounts)
-
-        let options = {functionName: "requestToMintNewSubstratmProfileNFT", ...optionsCore}
+        
+        let options = {functionName: "requestToMintNewSubstratmProfileNFT", 
+            params: {
+                twitterHandle: twitterHandle
+            },...optionsCore}
         
         let result = await Moralis.Web3.executeFunction(options)
         setNftResult(result)

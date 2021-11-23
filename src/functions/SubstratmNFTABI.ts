@@ -233,7 +233,7 @@
                  "type": "uint256"
              }
          ],
-         "name": "profileIdToOwnerAddress",
+         "name": "profileIdToWallet",
          "outputs": [
              {
                  "internalType": "address",
@@ -247,9 +247,9 @@
      {
          "inputs": [
              {
-                 "internalType": "uint256",
+                 "internalType": "address",
                  "name": "",
-                 "type": "uint256"
+                 "type": "address"
              }
          ],
          "name": "profiles",
@@ -258,6 +258,11 @@
                  "internalType": "string",
                  "name": "twitterHandle",
                  "type": "string"
+             },
+             {
+                 "internalType": "uint256",
+                 "name": "tokenId",
+                 "type": "uint256"
              }
          ],
          "stateMutability": "view",
@@ -429,17 +434,17 @@
      {
          "inputs": [
              {
-                 "internalType": "uint256",
-                 "name": "profileId",
-                 "type": "uint256"
+                 "internalType": "address",
+                 "name": "",
+                 "type": "address"
              }
          ],
-         "name": "getProfileMetadata",
+         "name": "walletToProfileId",
          "outputs": [
              {
-                 "internalType": "string",
+                 "internalType": "uint256",
                  "name": "",
-                 "type": "string"
+                 "type": "uint256"
              }
          ],
          "stateMutability": "view",
@@ -451,6 +456,42 @@
                  "internalType": "uint256",
                  "name": "profileId",
                  "type": "uint256"
+             }
+         ],
+         "name": "getProfileMetadata",
+         "outputs": [
+             {
+                 "components": [
+                     {
+                         "internalType": "string",
+                         "name": "twitterHandle",
+                         "type": "string"
+                     },
+                     {
+                         "internalType": "uint256",
+                         "name": "tokenId",
+                         "type": "uint256"
+                     }
+                 ],
+                 "internalType": "struct SubstratmNFT.Profile",
+                 "name": "",
+                 "type": "tuple"
+             }
+         ],
+         "stateMutability": "view",
+         "type": "function"
+     },
+     {
+         "inputs": [
+             {
+                 "internalType": "address",
+                 "name": "userAddress",
+                 "type": "address"
+             },
+             {
+                 "internalType": "string",
+                 "name": "twitterHandle",
+                 "type": "string"
              }
          ],
          "name": "updateSubstratmProfile",
@@ -482,6 +523,44 @@
          "name": "requestToMintNewSubstratmProfileNFT",
          "outputs": [],
          "stateMutability": "nonpayable",
+         "type": "function"
+     },
+     {
+         "inputs": [
+             {
+                 "internalType": "address",
+                 "name": "userAddress",
+                 "type": "address"
+             }
+         ],
+         "name": "readTwitterHandleForGivenAddress",
+         "outputs": [
+             {
+                 "internalType": "string",
+                 "name": "",
+                 "type": "string"
+             }
+         ],
+         "stateMutability": "view",
+         "type": "function"
+     },
+     {
+         "inputs": [
+             {
+                 "internalType": "address",
+                 "name": "userAddress",
+                 "type": "address"
+             }
+         ],
+         "name": "nftExistsForAccount",
+         "outputs": [
+             {
+                 "internalType": "bool",
+                 "name": "",
+                 "type": "bool"
+             }
+         ],
+         "stateMutability": "view",
          "type": "function"
      },
      {
