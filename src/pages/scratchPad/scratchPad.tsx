@@ -46,20 +46,21 @@ const About = () => {
     useEffect(()=>{fetchBlock()})
 
 
+    // https://youtu.be/rd0TTLjQLy4?t=1152
+    const optionsCore = {
+        contractAddress: CONTRACT_ADDRESS,
+        abi: SubstratmNFTABI,
+        params: {
+            twitterHandle: twitterHandle
+        },
+    };
+
     const mintNFT = async() => {
         let web3 = await Moralis.Web3.enableWeb3()
         let accounts = await web3.eth.getAccounts()
         console.log('accounts', accounts)
 
-        // https://youtu.be/rd0TTLjQLy4?t=1152
-        const options = {
-            contractAddress: CONTRACT_ADDRESS,
-            functionName: "requestToMintNewSubstratmProfileNFT",
-            abi: SubstratmNFTABI,
-            params: {
-                twitterHandle: twitterHandle
-            },
-        };
+        let options = {functionName: "requestToMintNewSubstratmProfileNFT", ...optionsCore}
         
         let result = await Moralis.Web3.executeFunction(options)
         setNftResult(result)

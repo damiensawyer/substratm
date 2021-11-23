@@ -1,4 +1,6 @@
 // SPDX-License-Identifier: MIT
+// docs https://docs.openzeppelin.com/contracts/4.x/api/token/erc721
+// and... https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721URIStorage
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
