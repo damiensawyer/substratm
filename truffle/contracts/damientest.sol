@@ -12,27 +12,25 @@ contract SubstratmNFT is ERC721URIStorage, Ownable {
     string private _baseURIextended;
 
     mapping(address => uint256) public walletToProfileId;
-    //mapping(uint256 => address) public profileIdToOwnerAddress;
-    mapping(uint256 => Profile) public profileMap;
+    mapping(uint256 => address) public profileIdToWallet;
+    mapping(address => Profile) public profiles;
     
-    address[] public profiles;
+    
+    //address[] public profiles;
     uint256 internal fee;
+    uint256 internal lastTokenId;
     
      constructor() ERC721("SubstratmNFT", "SBSTR") { 
-        
+        lastTokenId = 0;
     }
     
     function getProfileMetadata(uint256 profileId)
     public
     view
-    returns (
-        string memory
-    )
+    returns (Profile  memory )
     {
         // TODO return all profile Metadata
-        return (
-            profiles[profileId].twitterHandle
-        );
+        return     profiles[profileIdToWallet[profileId]];
     }
 
     function updateSubstratmProfile(
@@ -40,9 +38,9 @@ contract SubstratmNFT is ERC721URIStorage, Ownable {
         string memory twitterHandle
     ) public {
         require(_isApprovedOrOwner(_msgSender(), walletToProfileId[userAddress]), "ERC721: updateSubstratmProfile caller is not owner nor approved"        );
-        
-        
+        profiles[_msgSender()].twitterHandle = twitterHandle;
     }
+    
     function setBaseURI(string memory baseURI_) external onlyOwner() {
         _baseURIextended = baseURI_;
     }
@@ -55,20 +53,22 @@ contract SubstratmNFT is ERC721URIStorage, Ownable {
         string memory twitterHandle
     ) public {
         // TODO validate twitter handle
-        uint256 newId = profiles.length;
-        profiles.push(_msgSender); // doing this so that we can get a count of minted nfts
-        walletToProfileId[_msgSender] = newId; // Lilly, I thought this made more sense because we can look up stuff for a given address, which we can read from metamask in the Front End.
+        lastTokenId = lastTokenId + 1;
+        uint256 newId = lastTokenId;
         
-        _safeMint(_msgSender, newId);
+        walletToProfileId[_msgSender()] = newId; // Lilly, I thought this made more sense because we can look up stuff for a given address, which we can read from metamask in the Front End.
+        profileIdToWallet[newId] = _msgSender();
+        _safeMint(_msgSender(), newId);
                 
-        profileMap[_msgSender] = Profile({
-                twitterHandle: twitterHandle
+        profiles[_msgSender()] = Profile({
+                twitterHandle: twitterHandle,
+                tokenId: newId
             });
     }
     
-    function readTwitterHandleForGivenAddress (address userAddress) public returns (uint256) 
+    function readTwitterHandleForGivenAddress (address userAddress) public view returns (string memory) 
     {
-     return walletToProfileId[msg.sender];   
+        return profiles[userAddress].twitterHandle; // not sure what happens if we haven't minted yet and the mapping entry is 0. Are there null reference exceptions?
     }
 
 
