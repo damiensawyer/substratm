@@ -19,8 +19,8 @@ contract ChainlinkTwitter is ChainlinkClient {
 
     constructor() public {
         setPublicChainlinkToken();
-        oracle = 0x4CF0507fe3236DedDbE6cD18508f35D9b5e16e7C; // oracle address
-        jobId = "948db03c9576480a8fa0545bee5b28ab"; //job id
+        oracle = 0xAA1DC356dc4B18f30C347798FD5379F3D77ABC5b; // oracle address
+        jobId = "09f3d678301a408cb6a8ab983932636d"; //job id
         fee = 11 * 10 ** 17; // 1.1 LINK
         owner = msg.sender;
     }
