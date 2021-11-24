@@ -69,9 +69,9 @@ contract SubstratmNFT is ERC721URIStorage, Ownable {
 
         // update if it was existing. 
         profiles[_msgSender()] = Profile({
-                twitterHandle: twitterHandle,
-                tokenId: tokenId
-            });
+            twitterHandle: twitterHandle,
+            tokenId: tokenId
+        });
     }
     
     function readTwitterHandleForGivenAddress () public view returns (string memory) 

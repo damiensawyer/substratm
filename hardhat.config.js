@@ -27,6 +27,10 @@ module.exports = {
         rinkeby: {
             url: "https://speedy-nodes-nyc.moralis.io/72216de496ff399faf1f925a/eth/rinkeby",
             ...accounts
+        },
+        kovan: {
+            url: "https://speedy-nodes-nyc.moralis.io/72216de496ff399faf1f925a/eth/kovan",
+            ...accounts
         }
     },
     etherscan: {
