@@ -34,7 +34,7 @@ const About = () => {
     const [twitterHandleRetrievedFromContract, setTwitterHandleRetrievedFromContract] = useState<string | null>(null);
 
 
-    const CONTRACT_ADDRESS = "0xA6e685493aC1F91b39d10348FcbeC3B0d98834F2"
+    const CONTRACT_ADDRESS = "0x8E21feCdcd873A938caF35b1449cc2dA5D3624D2" // deployed on ropsten
 
     const getUserAddress = async () => {
         let web3 = await Moralis.Web3.enableWeb3()
@@ -133,7 +133,7 @@ const About = () => {
         <h3>Checking NFT Minted Status for current metamask account</h3>
         <div>
 
-            <Button variant="contained" onClick={checkIfNFTMintedForUser}>Check if Address Minted</Button>
+            <Button variant="contained" onClick={checkIfNFTMintedForUser}>Check if Address Minted (note, on Ropsten, needed to wait a few seconds for miners. )</Button>
             {nftMintedForAddress !== null && <><h5>NFT Minted: </h5>{nftMintedForAddress ? 'yes, minted' : 'no, not minted'} </>}
         </div>
 
