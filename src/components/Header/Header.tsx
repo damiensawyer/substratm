@@ -14,8 +14,6 @@ const Header = () => {
     return (
         <StyledHeader>
             <StyledToolbar>
-                {isDevMode && <Chip label={`Logged In:${isLoggedIn ? "yes" : "no"}`} />}
-
                 {isLoggedIn && (
                     // https://stackoverflow.com/a/51642640/494635
                     <Button component={Link} to="/home" variant="contained" color="secondary" href="/home">
