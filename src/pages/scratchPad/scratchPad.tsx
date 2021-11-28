@@ -137,32 +137,29 @@ const About = () => {
     const {data: d2, isFetching: f2, error: e2} = useMoralisWeb3ApiCall(getTokenBalances)
 
 
-    let moralisData = {
+    const moralisData = {
         User: Moralis.User.current(),
         serverURL: Moralis.serverURL
     }
-
+    const twitterVerification = (
+        <RaisedPaperCode>
+            <div>
+                <h3>Connect your Twitter Handle to your account by tweeting "Verification":</h3>
+                <TextField id="outlined-basic" label="Twitter Handle" variant="outlined" onChange={event => setTwitterHandle(event.target.value)}/>
+                <TextField id="outlined-basic" label="Tweet Id" variant="outlined" onChange={event => setTweetId(event.target.value)}/>
+                <br/>
+                <Button variant="contained" onClick={validateTwitterData}>Connect Twitter Handle To Profile</Button>
+            </div>
+        </RaisedPaperCode>
+    );
     return <>
-{/*         <h1>Scratch Pad</h1> */}
         <h1>Mint Substratm NFT</h1>
-        <Card>
         <div>
-
-
             <Button variant="contained" onClick={mintNFT}>Mint NFT</Button>
             {!!nftResult && <><h5>Minted an NFT...</h5><RaisedPaperCode><ReactJson src={nftResult} theme="monokai"/></RaisedPaperCode></>}
         </div>
-        </Card>
             <br/>
-        <RaisedPaperCode>
-        <div>
-        <h3>Connect your Twitter Handle to your account by tweeting "Verification":</h3>
-        <TextField id="outlined-basic" label="Twitter Handle" variant="outlined" onChange={event => setTwitterHandle(event.target.value)}/>
-        <TextField id="outlined-basic" label="Tweet Id" variant="outlined" onChange={event => setTweetId(event.target.value)}/>
-        <br/>
-        <Button variant="contained" onClick={validateTwitterData}>Connect Twitter Handle To Profile</Button>
-        </div>
-        </RaisedPaperCode>
+        {twitterVerification}
 
         <h3>Checking NFT Minted Status for current metamask account</h3>
         <div>
