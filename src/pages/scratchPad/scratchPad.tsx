@@ -121,13 +121,12 @@ const About = () => {
     }
 
     return <>
-        <h1>Scratch Pad</h1>
         <h3>Minting NFT with SubstratmNFT.sol</h3>
         <div>
 
             <TextField id="outlined-basic" label="Twitter Handle" variant="outlined" onChange={event => setTwitterHandle(event.target.value)}/>
             <Button variant="contained" onClick={mintNFT}>Mint NFT</Button>
-            {!!nftResult && <><h5>Minted an NFT...</h5><RaisedPaperCode><ReactJson src={nftResult} theme="monokai"/></RaisedPaperCode></>}
+            {/*{!!nftResult && <><h5>Minted an NFT...</h5><RaisedPaperCode><ReactJson src={nftResult} theme="monokai"/></RaisedPaperCode></>}*/}
         </div>
 
         <h3>Checking NFT Minted Status for current metamask account</h3>
@@ -143,30 +142,6 @@ const About = () => {
             <Button variant="contained" onClick={loadTwitterHandle}>Read Twitter Handle from Contract</Button>
             {twitterHandleRetrievedFromContract !== null && <><h5>Twitter Handle: </h5>{twitterHandleRetrievedFromContract} </>}
         </div>
-        
-
-        {/*<h3>Reading data from moralise web 3 api calls</h3>*/}
-        
-        {/*<div>*/}
-        {/*    {f1 && <>Fetching Native Balances</>}*/}
-        {/*    {!!d1 && !!d1.balance && <>Native Balance is {d1.balance}</>}*/}
-        {/*</div>*/}
-        
-        {/*<div>*/}
-        {/*    {f2 && <>Fetching Token Balances</>}*/}
-        {/*    {!!d2 && <>Token Balance Count: {d2.length}</>}*/}
-        {/*    {!!d2 && d2.map(x => <>Token {x.name} Balance is {x.balance}</>)}*/}
-        {/*</div>*/}
-        
-        {/*<h3>Sample of reading a block from chain</h3>*/}
-        {/*<RaisedPaperCode><>{sampleBlock}</>*/}
-        {/*</RaisedPaperCode>*/}
-        
-        {/*<h3>Reading Custom Setting from .env file</h3>*/}
-        {/*<p>custom setting (damien): {damien}</p>*/}
-        {/*<Address/>*/}
-        {/*<RaisedPaperCode><>user 2 Info {JSON.stringify(moralisData, null, 2)}</>*/}
-        {/*</RaisedPaperCode>*/}
     </>
 };
 
