@@ -13,6 +13,7 @@ contract SubstratmNFT is TwitterClient, ERC721URIStorage, Ownable {
     string private _baseURIextended;
 
     event TwitterHandleUpdated(address _from, bytes32 _id, string _twitterHandle);
+    event NewProfileCreated(address _from, uint256 tokenId);
 
     mapping(address => uint256) public walletToProfileId;
     mapping(uint256 => address) public profileIdToWallet;
@@ -66,10 +67,7 @@ contract SubstratmNFT is TwitterClient, ERC721URIStorage, Ownable {
         return _baseURIextended;
     }
 
-    function requestToMintNewSubstratmProfileNFT(
-        string memory twitterHandle
-    ) public {
-        // TODO validate twitter handle
+    function requestToMintNewSubstratmProfileNFT() public {
         uint256 tokenId = 0;
         if (!nftExistsForAccount(_msgSender())){
             lastTokenId = lastTokenId + 1;
@@ -86,9 +84,10 @@ contract SubstratmNFT is TwitterClient, ERC721URIStorage, Ownable {
 
         // update if it was existing. 
         profiles[_msgSender()] = Profile({
-            twitterHandle: twitterHandle,
+            twitterHandle: "", // initialize as null
             tokenId: tokenId
         });
+        emit NewProfileCreated(_msgSender(), tokenId);
     }
     
     function readTwitterHandleForGivenAddress () public view returns (string memory) 
