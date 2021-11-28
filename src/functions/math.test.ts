@@ -7,5 +7,11 @@ describe('maths tests', () => {
 describe('simple tests', () => {
     it('should add numbers', () => {
         expect(true).toBe(true);
+    })
     });
-})
+
+// describe('simple tests', () => {
+//     it('should add numbers', () => {
+//         expect(add(1,2)).toEqual(3);
+//     });
+// })
