@@ -1,14 +1,16 @@
 import {Label} from "@material-ui/icons";
 import ReactJson from 'react-json-view';
-import {Button, TextField} from "@mui/material";
+import {Button, Paper, TextField} from "@mui/material";
 import Moralis from "moralis";
 import React, {useEffect, useState} from "react";
 import {useMoralis, useMoralisWeb3Api, useMoralisWeb3ApiCall} from "react-moralis";
+import { Card } from '@mui/material';
 
 import Address from '../../components/Address/Address';
 import {MyPaper, SmallPre, StyledPaper} from "../../content/commonStyles";
 import {RaisedPaper, RaisedPaperCode} from "../../content/componentStyles";
-import {SubstratmNFTABI} from "../../functions/SubstratmNFTABI";
+// import {SubstratmNFTABI} from "../../functions/SubstratmNFTABI";
+import SubstratmNFT from '../../artifacts/contracts/SubstratmNFT.sol/SubstratmNFT.json';
 
 declare const ethers: any
 const About = () => {
@@ -30,6 +32,7 @@ const About = () => {
     const [sampleBlock, setSampleBlock] = useState('loading sample block....');
     const [nftResult, setNftResult] = useState(null);
     const [twitterHandle, setTwitterHandle] = useState({});
+    const [tweetId, setTweetId] = useState({});
     const [nftMintedForAddress, setNftMintedForAddress] = useState<boolean | null>(null); // should re
     const [twitterHandleRetrievedFromContract, setTwitterHandleRetrievedFromContract] = useState<string | null>(null);
 
@@ -60,7 +63,7 @@ const About = () => {
     // https://youtu.be/rd0TTLjQLy4?t=1152
     const optionsCore = {
         contractAddress: CONTRACT_ADDRESS,
-        abi: SubstratmNFTABI,
+        abi: SubstratmNFT.abi,
 
     };
 
@@ -98,16 +101,35 @@ const About = () => {
 
 
     const mintNFT = async () => {
-        let options = {
-            functionName: "requestToMintNewSubstratmProfileNFT",
-            params: {
-                twitterHandle: twitterHandle
-            }, ...optionsCore
-        }
 
-        let result = await Moralis.Web3.executeFunction(options)
-        setNftResult(result)
-        console.log('result', result)
+        const options = {
+            functionName: "requestToMintNewSubstratmProfileNFT",
+            ...optionsCore
+        }
+        try {
+            const result = await Moralis.Web3.executeFunction(options)
+            setNftResult(result)
+            console.log('result', result)
+        } catch (e) {
+            console.log('error', e);
+        }
+    }
+    const validateTwitterData = async () => {
+        const options = {
+            functionName: "updateSubstratmProfile",
+            params: {
+            'twitterHandle': twitterHandle,
+            'tweetId': tweetId,
+            'verificationString': 'verification'
+            },
+            ...optionsCore
+        }
+        try {
+            const result = await Moralis.Web3.executeFunction(options)
+            console.log('result', result)
+        } catch (e) {
+            console.log('error', e);
+        }
     }
 
     // note, these fail if you hit f5, even though we're connected to meta
@@ -115,20 +137,29 @@ const About = () => {
     const {data: d2, isFetching: f2, error: e2} = useMoralisWeb3ApiCall(getTokenBalances)
 
 
-    let moralisData = {
+    const moralisData = {
         User: Moralis.User.current(),
         serverURL: Moralis.serverURL
     }
-
+    const twitterVerification = (
+        <RaisedPaperCode>
+            <div>
+                <h3>Connect your Twitter Handle to your account by tweeting "Verification":</h3>
+                <TextField id="outlined-basic" label="Twitter Handle" variant="outlined" onChange={event => setTwitterHandle(event.target.value)}/>
+                <TextField id="outlined-basic" label="Tweet Id" variant="outlined" onChange={event => setTweetId(event.target.value)}/>
+                <br/>
+                <Button variant="contained" onClick={validateTwitterData}>Connect Twitter Handle To Profile</Button>
+            </div>
+        </RaisedPaperCode>
+    );
     return <>
-        <h1>Scratch Pad</h1>
-        <h3>Minting NFT with SubstratmNFT.sol</h3>
+        <h1>Mint Substratm NFT</h1>
         <div>
-
-            <TextField id="outlined-basic" label="Twitter Handle" variant="outlined" onChange={event => setTwitterHandle(event.target.value)}/>
             <Button variant="contained" onClick={mintNFT}>Mint NFT</Button>
             {!!nftResult && <><h5>Minted an NFT...</h5><RaisedPaperCode><ReactJson src={nftResult} theme="monokai"/></RaisedPaperCode></>}
         </div>
+            <br/>
+        {twitterVerification}
 
         <h3>Checking NFT Minted Status for current metamask account</h3>
         <div>
@@ -137,7 +168,7 @@ const About = () => {
             {nftMintedForAddress !== null && <><h5>NFT Minted: </h5>{nftMintedForAddress ? 'yes, minted' : 'no, not minted'} </>}
         </div>
 
-        <h3>Read Twitter handlef from contract for current metamask account</h3>
+        <h3>Read Twitter handle from contract for current metamask account</h3>
         <div>
 
             <Button variant="contained" onClick={loadTwitterHandle}>Read Twitter Handle from Contract</Button>

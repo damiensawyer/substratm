@@ -1,15 +1,19 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.7;
 
 import "@openzeppelin/contracts/access/Ownable.sol"; // https://docs.openzeppelin.com/contracts/2.x/access-control
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol"; // https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721URIStorage
-contract SubstratmNFT is ERC721URIStorage, Ownable {
+import "./TwitterClient.sol";
+contract SubstratmNFT is TwitterClient, ERC721URIStorage, Ownable {
     struct Profile {
         string twitterHandle;
         uint256 tokenId;
     }
     // Base URI
     string private _baseURIextended;
+
+    event TwitterHandleUpdated(address _from, bytes32 _id, string _twitterHandle);
+    event NewProfileCreated(address _from, uint256 tokenId);
 
     mapping(address => uint256) public walletToProfileId;
     mapping(uint256 => address) public profileIdToWallet;
@@ -19,7 +23,7 @@ contract SubstratmNFT is ERC721URIStorage, Ownable {
     //address[] public profiles;
     uint256 internal fee;
     uint256 internal lastTokenId;
-    
+
      constructor() ERC721("SubstratmNFT", "SBSTR") { 
         lastTokenId = 0;
     }
@@ -34,11 +38,25 @@ contract SubstratmNFT is ERC721URIStorage, Ownable {
     }
 
     function updateSubstratmProfile(
-        address userAddress,
-        string memory twitterHandle
+        string memory twitterHandle,
+        string memory tweetId,
+        string memory verificationString
     ) public {
-        require(_isApprovedOrOwner(_msgSender(), walletToProfileId[userAddress]), "ERC721: updateSubstratmProfile caller is not owner nor approved"        );
-        profiles[_msgSender()].twitterHandle = twitterHandle;
+        require(_isApprovedOrOwner(_msgSender(), walletToProfileId[_msgSender()]), "ERC721: updateSubstratmProfile caller is not owner nor approved");
+        requestTwitterVerification(
+            tweetId,
+            verificationString,
+            twitterHandle
+        );
+    }
+
+    function fulfillTwitterData(bytes32 _requestId, bytes32 _twitterHandle) public virtual override recordChainlinkFulfillment(_requestId)
+    {
+        // TODO make not public lmao
+        super.fulfillTwitterData(_requestId, _twitterHandle);
+
+        profiles[_msgSender()].twitterHandle = bytes32ToString(_twitterHandle);
+        emit TwitterHandleUpdated(_msgSender(), _requestId, bytes32ToString(_twitterHandle));
     }
     
     function setBaseURI(string memory baseURI_) external onlyOwner() {
@@ -49,10 +67,7 @@ contract SubstratmNFT is ERC721URIStorage, Ownable {
         return _baseURIextended;
     }
 
-    function requestToMintNewSubstratmProfileNFT(
-        string memory twitterHandle
-    ) public {
-        // TODO validate twitter handle
+    function requestToMintNewSubstratmProfileNFT() public {
         uint256 tokenId = 0;
         if (!nftExistsForAccount(_msgSender())){
             lastTokenId = lastTokenId + 1;
@@ -69,9 +84,10 @@ contract SubstratmNFT is ERC721URIStorage, Ownable {
 
         // update if it was existing. 
         profiles[_msgSender()] = Profile({
-            twitterHandle: twitterHandle,
+            twitterHandle: "", // initialize as null
             tokenId: tokenId
         });
+        emit NewProfileCreated(_msgSender(), tokenId);
     }
     
     function readTwitterHandleForGivenAddress () public view returns (string memory) 
