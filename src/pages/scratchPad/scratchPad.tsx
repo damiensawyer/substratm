@@ -1,6 +1,6 @@
 import {Label} from "@material-ui/icons";
 import ReactJson from 'react-json-view';
-import {Button, Paper, TextField} from "@mui/material";
+import {Button, TextField} from "@mui/material";
 import Moralis from "moralis";
 import React, {useEffect, useState} from "react";
 import {useMoralis, useMoralisWeb3Api, useMoralisWeb3ApiCall} from "react-moralis";
@@ -10,7 +10,7 @@ import Address from '../../components/Address/Address';
 import {MyPaper, SmallPre, StyledPaper} from "../../content/commonStyles";
 import {RaisedPaper, RaisedPaperCode} from "../../content/componentStyles";
 // import {SubstratmNFTABI} from "../../functions/SubstratmNFTABI";
-import SubstratmNFT from '../../artifacts/contracts/SubstratmNFT.sol/SubstratmNFT.json';
+import SubstratmNFT from './SubstratmNFT.json';
 
 declare const ethers: any
 const About = () => {
@@ -156,7 +156,7 @@ const About = () => {
         <h1>Mint Substratm NFT</h1>
         <div>
             <Button variant="contained" onClick={mintNFT}>Mint NFT</Button>
-            {!!nftResult && <><h5>Minted an NFT...</h5><RaisedPaperCode><ReactJson src={nftResult} theme="monokai"/></RaisedPaperCode></>}
+            {/*{!!nftResult && <><h5>Minted an NFT...</h5><RaisedPaperCode><ReactJson src={nftResult} theme="monokai"/></RaisedPaperCode></>}*/}
         </div>
             <br/>
         {twitterVerification}
@@ -174,30 +174,6 @@ const About = () => {
             <Button variant="contained" onClick={loadTwitterHandle}>Read Twitter Handle from Contract</Button>
             {twitterHandleRetrievedFromContract !== null && <><h5>Twitter Handle: </h5>{twitterHandleRetrievedFromContract} </>}
         </div>
-        
-
-        {/*<h3>Reading data from moralise web 3 api calls</h3>*/}
-        
-        {/*<div>*/}
-        {/*    {f1 && <>Fetching Native Balances</>}*/}
-        {/*    {!!d1 && !!d1.balance && <>Native Balance is {d1.balance}</>}*/}
-        {/*</div>*/}
-        
-        {/*<div>*/}
-        {/*    {f2 && <>Fetching Token Balances</>}*/}
-        {/*    {!!d2 && <>Token Balance Count: {d2.length}</>}*/}
-        {/*    {!!d2 && d2.map(x => <>Token {x.name} Balance is {x.balance}</>)}*/}
-        {/*</div>*/}
-        
-        {/*<h3>Sample of reading a block from chain</h3>*/}
-        {/*<RaisedPaperCode><>{sampleBlock}</>*/}
-        {/*</RaisedPaperCode>*/}
-        
-        {/*<h3>Reading Custom Setting from .env file</h3>*/}
-        {/*<p>custom setting (damien): {damien}</p>*/}
-        {/*<Address/>*/}
-        {/*<RaisedPaperCode><>user 2 Info {JSON.stringify(moralisData, null, 2)}</>*/}
-        {/*</RaisedPaperCode>*/}
     </>
 };
 
