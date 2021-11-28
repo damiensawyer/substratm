@@ -29,14 +29,15 @@ const Header = () => {
 
                 {isLoggedIn && isDevMode && (
                     <Button component={Link} to="/scratchpad" variant="contained" color="secondary" href="/scratchpad">
-                        Scratch Pad
+                        Create Profile
                     </Button>
                 )}
 
                 <MetamaskLogin/>
-            </StyledToolbar>
 
+            </StyledToolbar>
             <SubstramLogo/>
+
         </StyledHeader>
     );
 };
@@ -45,9 +46,10 @@ const StyledToolbar = styled(Toolbar)`
   & > * {
     align-items: center;
     margin-right: 10px;
-    min-width: calc(100% / 3);
+    min-width: calc(50% / 3);
     max-height: 50%;
   }
+
 `;
 
 const StyledHeader = styled.nav`
@@ -55,5 +57,11 @@ const StyledHeader = styled.nav`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
+  & > * {
+    min-width: calc(100% / 2);
+  }
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 export default Header;

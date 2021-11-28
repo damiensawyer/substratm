@@ -14,7 +14,7 @@ task("balance", "Prints an account's balance")
   .setAction(async () => {});
 
 module.exports = {
-    solidity: "0.8.0",
+    solidity: "0.8.7",
     networks: {
         ropsten: {
           url: `https://speedy-nodes-nyc.moralis.io/72216de496ff399faf1f925a/eth/ropsten`,
