@@ -1,7 +1,6 @@
 import {Label} from "@material-ui/icons";
 import ReactJson from 'react-json-view';
 import {Button, TextField} from "@mui/material";
-import {Button, Paper, TextField} from "@mui/material";
 import Moralis from "moralis";
 import React, {useEffect, useState} from "react";
 import {useMoralis, useMoralisWeb3Api, useMoralisWeb3ApiCall} from "react-moralis";
@@ -11,7 +10,7 @@ import Address from '../../components/Address/Address';
 import {MyPaper, SmallPre, StyledPaper} from "../../content/commonStyles";
 import {RaisedPaper, RaisedPaperCode} from "../../content/componentStyles";
 // import {SubstratmNFTABI} from "../../functions/SubstratmNFTABI";
-import SubstratmNFT from '../../artifacts/contracts/SubstratmNFT.sol/SubstratmNFT.json';
+import SubstratmNFT from './SubstratmNFT.json';
 
 declare const ethers: any
 const About = () => {
