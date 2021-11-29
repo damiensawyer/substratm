@@ -10,7 +10,7 @@ import Address from '../../components/Address/Address';
 import {MyPaper, SmallPre, StyledPaper} from "../../content/commonStyles";
 import {RaisedPaper, RaisedPaperCode} from "../../content/componentStyles";
 // import {SubstratmNFTABI} from "../../functions/SubstratmNFTABI";
-import SubstratmNFT from './SubstratmNFT.json';
+import SubstratmNFT from '../../artifacts/contracts/SubstratmNFT.sol/SubstratmNFT.json';
 
 declare const ethers: any
 const About = () => {
@@ -37,8 +37,8 @@ const About = () => {
     const [twitterHandleRetrievedFromContract, setTwitterHandleRetrievedFromContract] = useState<string | null>(null);
 
 
-    const CONTRACT_ADDRESS = "0x8E21feCdcd873A938caF35b1449cc2dA5D3624D2" // deployed on ropsten
-
+    const CONTRACT_ADDRESS = "0x7bFDFd600620BAeA044c2e95F0C562B5FaC0454f" // deployed on ropsten
+// TODO make this not hardcoded lmao
     const getUserAddress = async () => {
         let web3 = await Moralis.Web3.enableWeb3()
         let accounts = await web3.eth.getAccounts()
@@ -115,18 +115,23 @@ const About = () => {
         }
     }
     const validateTwitterData = async () => {
+        console.log('validating twitter data...');
+        const userAddress = await getUserAddress()
+
+        console.log('userAddress', userAddress);
         const options = {
             functionName: "updateSubstratmProfile",
             params: {
-            'twitterHandle': twitterHandle,
-            'tweetId': tweetId,
-            'verificationString': 'verification'
+                'twitterHandle': twitterHandle,
+                'tweetId': tweetId,
+                'verificationString': 'verification'
             },
+            userAddress: userAddress,
             ...optionsCore
         }
         try {
-            const result = await Moralis.Web3.executeFunction(options)
-            console.log('result', result)
+            const result = await Moralis.Web3.executeFunction(options);
+            console.log('result', result);
         } catch (e) {
             console.log('error', e);
         }
