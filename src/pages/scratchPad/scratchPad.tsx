@@ -37,7 +37,8 @@ const About = () => {
     const [twitterHandleRetrievedFromContract, setTwitterHandleRetrievedFromContract] = useState<string | null>(null);
 
 
-    const CONTRACT_ADDRESS = "0xA6e685493aC1F91b39d10348FcbeC3B0d98834F2"
+    const CONTRACT_ADDRESS = "0x7bFDFd600620BAeA044c2e95F0C562B5FaC0454f"
+//     TODO prob not hardcode this lmao
 
     const getUserAddress = async () => {
         let web3 = await Moralis.Web3.enableWeb3()
