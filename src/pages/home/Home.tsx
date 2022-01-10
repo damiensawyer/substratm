@@ -9,13 +9,6 @@ function Home() {
   let isLoggedIn = useAppSelector((x) => x.loginSlice.loggedIn);
   let dispatch = useAppDispatch();
 
-    
-
-  // const APP_ID = (process.env.REACT_APP_MORALIS_APPLICATION_ID as string); 
-  // useEffect(() => {
-  //   if (!isStarted) dispatch(setPing());
-  // }, []);
-  // const SERVER_URL = (process.env.REACT_APP_MORALIS_SERVER_URL as string);
   const damien = (process.env.DAMIEN as string);
   const { authenticate, isAuthenticated, user } = useMoralis();
   
