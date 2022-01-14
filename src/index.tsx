@@ -12,9 +12,13 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { MoralisProvider } from 'react-moralis';
 import { BrowserRouter } from 'react-router-dom';
 
-// These are read from the .env file. 
-// const APP_ID = (process.env.REACT_APP_MORALIS_APPLICATION_ID as string); 
-// const SERVER_URL = (process.env.REACT_APP_MORALIS_SERVER_URL as string);
+// These are read from the .env file.
+const APP_ID =
+  (process.env.REACT_APP_MORALIS_APP_ID as string) ??
+  'DmPC1YInapx8x0Uvpqrjs39yD3tDQrFmrZLojihU';
+const SERVER_URL =
+  (process.env.REACT_APP_MORALIS_SERVER_URL as string) ??
+  'https://sq3oo5ayiubc.usemoralis.com:2053/server';
 
 /**
  Ed and Lilly, the code above successully reads the .env file on my machine... but I can't get it working on the server (we're we're reading from the environment variables in linux?)
@@ -27,10 +31,9 @@ import { BrowserRouter } from 'react-router-dom';
  The site is hosted via nginx on Debian. 
  */
 
-// Rinkby
-const APP_ID = 'DmPC1YInapx8x0Uvpqrjs39yD3tDQrFmrZLojihU'; 
-const SERVER_URL = 'https://sq3oo5ayiubc.usemoralis.com:2053/server';
-
+// Rinkeby
+// const APP_ID = 'DmPC1YInapx8x0Uvpqrjs39yD3tDQrFmrZLojihU';
+// const SERVER_URL = 'https://sq3oo5ayiubc.usemoralis.com:2053/server';
 
 ReactDOM.render(
   <React.StrictMode>
