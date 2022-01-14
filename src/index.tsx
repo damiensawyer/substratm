@@ -12,28 +12,14 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { MoralisProvider } from 'react-moralis';
 import { BrowserRouter } from 'react-router-dom';
 
-// These are read from the .env file.
+// defaults to lilian's moralis App ID and server URL
+// TODO: configure the defaults in the nginx config and/or if we move to nextjs, in vercel
 const APP_ID =
   (process.env.REACT_APP_MORALIS_APP_ID as string) ??
-  'DmPC1YInapx8x0Uvpqrjs39yD3tDQrFmrZLojihU';
+  'DBofksEwejwcrHGi5N32hSsPKniOy46jV4aeIIOO';
 const SERVER_URL =
   (process.env.REACT_APP_MORALIS_SERVER_URL as string) ??
-  'https://sq3oo5ayiubc.usemoralis.com:2053/server';
-
-/**
- Ed and Lilly, the code above successully reads the .env file on my machine... but I can't get it working on the server (we're we're reading from the environment variables in linux?)
- I read a stack of stuff like
- https://dev.to/jam3/managing-env-variables-for-provisional-builds-h37
- https://create-react-app.dev/docs/adding-custom-environment-variables/
- https://tacomanator.medium.com/environments-with-create-react-app-7b645312c09d
- 
- .... but am still stuck. Perhaps we can come back to it or just hard code it. 
- The site is hosted via nginx on Debian. 
- */
-
-// Rinkeby
-// const APP_ID = 'DmPC1YInapx8x0Uvpqrjs39yD3tDQrFmrZLojihU';
-// const SERVER_URL = 'https://sq3oo5ayiubc.usemoralis.com:2053/server';
+  'https://ww8ofdl0e4tg.usemoralis.com:2053/server';
 
 ReactDOM.render(
   <React.StrictMode>
