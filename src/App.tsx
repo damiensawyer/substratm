@@ -18,26 +18,26 @@ function App() {
       <StyledApp>
         <NavigationBar />
         <Header />
-        <StyledHeader>
-          <Switch>
-            <Route exact path="/" render={() => <h1></h1>} />
-            {isLoggedIn && (
-              <>
-                <Route path="/home" exact component={Home} />
-                <Route path="/about" exact component={About} />
-                {/*it would be good to render this only in dev mode if we can get that requireAuth function working */}
-                <Route path="/scratchpad" exact component={ScratchPad} />
-              </>
-            )}
 
-            {!isLoggedIn && <Route component={UnAuthenticatedView} />}
-          </Switch>
-        </StyledHeader>
+        <Switch>
+          <Route exact path="/" render={() => <h1></h1>} />
+          {isLoggedIn && (
+            <>
+              <Route path="/home" exact component={Home} />
+              <Route path="/about" exact component={About} />
+              {/*it would be good to render this only in dev mode if we can get that requireAuth function working */}
+              <Route path="/scratchpad" exact component={ScratchPad} />
+            </>
+          )}
+
+          {!isLoggedIn && <Route component={UnAuthenticatedView} />}
+        </Switch>
       </StyledApp>
     </BrowserRouter>
   );
 }
 const StyledApp = styled.div`
+  font-family: 'Comfortaa', cursive;
   text-align: center;
 `;
 const StyledHeader = styled.div`

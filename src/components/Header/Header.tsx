@@ -14,7 +14,30 @@ const Header = () => {
     <StyledHeader>
       <SubstramLogo />
       <StyledToolbar>
-        <Button component={Link} to="/about" color="secondary" href="/about">
+        {isLoggedIn && (
+          // https://stackoverflow.com/a/51642640/494635
+          <Button component={Link} to="/home" color="secondary" href="/home">
+            Home
+          </Button>
+        )}
+
+        {isLoggedIn && (
+          <Button component={Link} to="/about" color="secondary" href="/home">
+            About
+          </Button>
+        )}
+
+        {isLoggedIn && (
+          <Button
+            component={Link}
+            to="/scratchpad"
+            color="secondary"
+            href="/scratchpad"
+          >
+            Create Profile
+          </Button>
+        )}
+        {/* <Button component={Link} to="/about" color="secondary" href="/about">
           About
         </Button>
         <Button
@@ -32,7 +55,7 @@ const Header = () => {
           href="/socialwall"
         >
           Social&nbsp;Wall
-        </Button>
+        </Button> */}
         <MetamaskLogin />
       </StyledToolbar>
     </StyledHeader>
@@ -49,6 +72,7 @@ const StyledToolbar = styled(Toolbar)`
 `;
 
 const StyledHeader = styled.nav`
+  font-family: 'Comfortaa', cursive !important;
   display: flex;
   justify-content: space-between;
   align-items: center;

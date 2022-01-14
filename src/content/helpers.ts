@@ -1,4 +1,6 @@
-﻿import { createTheme } from '@mui/material';
+﻿import createPalette from '@material-ui/core/styles/createPalette';
+import createTypography from '@material-ui/core/styles/createTypography';
+import { createTheme } from '@mui/material';
 
 export const EMPTY_STRING = '';
 export const NA = 'N/A';
@@ -40,7 +42,16 @@ const BACKGROUND_PURPLE = '#11004a';
 export const BACKGROUND_LIGHT_PURPLE = '#3620ad';
 const LIGHT_GREY = '#DEECF9';
 const DARK_GREY = '#C7E0F4';
+const font = "'Comfortaa', cursive;";
 export const theme = createTheme({
+  typography: createTypography(
+    createPalette({
+      primary: { main: LIGHT_GREY, dark: DARK_GREY, light: ORANGE },
+    }),
+    {
+      fontFamily: font,
+    }
+  ),
   palette: {
     mode: 'dark',
     primary: {
