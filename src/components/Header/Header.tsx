@@ -37,7 +37,8 @@ const Header = () => {
             Create Profile
           </Button>
         )}
-        {/* <Button component={Link} to="/about" color="secondary" href="/about">
+        {/* TODO: these are the new buttons leaving them commented out to come back to it later
+        <Button component={Link} to="/about" color="secondary" href="/about">
           About
         </Button>
         <Button
