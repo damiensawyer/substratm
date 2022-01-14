@@ -29,7 +29,6 @@ const About = () => {
   } = useMoralis();
 
   var u: string = JSON.stringify(user, undefined, 2);
-  const damien = process.env.REACT_APP_DAMIEN as string;
   const {
     account: { getNativeBalance, getTokenBalances },
   } = useMoralisWeb3Api();
