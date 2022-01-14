@@ -13,7 +13,6 @@ import { contractAddress } from '../../utils/contractAddress';
 import Address from '../../components/Address/Address';
 import { MyPaper, SmallPre, StyledPaper } from '../../content/commonStyles';
 import { RaisedPaper, RaisedPaperCode } from '../../content/componentStyles';
-// import {SubstratmNFTABI} from "../../functions/SubstratmNFTABI";
 import SubstratmNFT from '../../artifacts/contracts/SubstratmNFT.sol/SubstratmNFT.json';
 
 declare const ethers: any;
@@ -30,7 +29,6 @@ const About = () => {
   } = useMoralis();
 
   var u: string = JSON.stringify(user, undefined, 2);
-  const damien = process.env.REACT_APP_DAMIEN as string;
   const {
     account: { getNativeBalance, getTokenBalances },
   } = useMoralisWeb3Api();
@@ -190,7 +188,6 @@ const About = () => {
         <Button variant="contained" onClick={mintNFT}>
           Mint NFT
         </Button>
-        {/*{!!nftResult && <><h5>Minted an NFT...</h5><RaisedPaperCode><ReactJson src={nftResult} theme="monokai"/></RaisedPaperCode></>}*/}
       </div>
       <br />
       {twitterVerification}

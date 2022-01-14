@@ -49,20 +49,18 @@ const MetamaskLogin = () => {
 
   return (
     <>
-    
-    <Button
-      variant="contained"
-      color="secondary"
-      disabled={isAuthenticating}
-      onClick={signInOrSignOut}
-    >
-      {isLoading
-        ? 'Loading...'
-        : isLoggedIn
-        ? 'Disconnect'
-        : 'Connect and Log In'}
-    </Button>
-    
+      <Button
+        variant="contained"
+        color="primary"
+        disabled={isAuthenticating}
+        onClick={signInOrSignOut}
+      >
+        {isLoading
+          ? 'Loading...'
+          : isLoggedIn
+          ? 'Disconnect'
+          : 'Connect Wallet'}
+      </Button>
     </>
   );
 };
