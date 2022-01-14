@@ -25,7 +25,6 @@ function App() {
             <>
               <Route path="/home" exact component={Home} />
               <Route path="/about" exact component={About} />
-              {/*it would be good to render this only in dev mode if we can get that requireAuth function working */}
               <Route path="/scratchpad" exact component={ScratchPad} />
             </>
           )}
@@ -39,6 +38,7 @@ function App() {
 const StyledApp = styled.div`
   font-family: 'Comfortaa', cursive;
   text-align: center;
+  padding: 40px 72px;
 `;
 const StyledHeader = styled.div`
   min-height: 100vh;

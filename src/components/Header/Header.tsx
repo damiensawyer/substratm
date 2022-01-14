@@ -78,9 +78,9 @@ const StyledHeader = styled.nav`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
-  & > * {
-    min-width: calc(100% / 2);
-  }
+  // & > * {
+  //   min-width: calc(100% / 2);
+  // }
   @media screen and (max-width: 800px) {
     flex-direction: column;
   }
