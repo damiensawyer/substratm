@@ -7,6 +7,7 @@ import ScratchPad from './pages/scratchPad/scratchPad';
 import { useAppSelector, useAppDispatch } from './slices/hooks';
 import About from './pages/about/About';
 import Home from './pages/home/Home';
+import LandingPage from './pages/landingPage/LandingPage';
 import Header from './components/Header/Header';
 import UnAuthenticatedView from './pages/unauthenticated/UnAuthenticatedView';
 
@@ -15,12 +16,12 @@ function App() {
 
   return (
     <BrowserRouter>
+      <Header />
       <StyledApp>
         <NavigationBar />
-        <Header />
 
         <Switch>
-          <Route exact path="/" render={() => <h1></h1>} />
+          <Route exact path="/" component={LandingPage} />
           {isLoggedIn && (
             <>
               <Route path="/home" exact component={Home} />
@@ -36,9 +37,7 @@ function App() {
   );
 }
 const StyledApp = styled.div`
-  font-family: 'Comfortaa', cursive;
   text-align: center;
-  padding: 40px 72px;
 `;
 const StyledHeader = styled.div`
   min-height: 100vh;

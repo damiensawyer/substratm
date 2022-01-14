@@ -30,7 +30,6 @@ export const SubstramLogo = () => {
 
 const StyledTypographyLogo = styled.div`
   display: flex;
-  font-family: 'Comfortaa', cursive;
   width: 24vw;
   padding 0 24px;
 `;

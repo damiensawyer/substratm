@@ -32,7 +32,7 @@ export const palette = {
   editpencil: '#a2a0a0',
   deleteicons: '#a2a0a0',
 };
-
+export const LEVEL_1 = '#181823';
 const ORANGE = '#c34e0d';
 const DARK_PURPLE = '#260879';
 const PINK = '#a02899';
@@ -42,7 +42,8 @@ const BACKGROUND_PURPLE = '#11004a';
 export const BACKGROUND_LIGHT_PURPLE = '#3620ad';
 const LIGHT_GREY = '#DEECF9';
 const DARK_GREY = '#C7E0F4';
-const font = "'Comfortaa', cursive;";
+
+const font = "'Sen', sans-serif;";
 export const theme = createTheme({
   typography: createTypography(
     createPalette({
