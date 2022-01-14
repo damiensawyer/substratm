@@ -7,6 +7,7 @@ import ScratchPad from './pages/scratchPad/scratchPad';
 import { useAppSelector, useAppDispatch } from './slices/hooks';
 import About from './pages/about/About';
 import Home from './pages/home/Home';
+import LandingPage from './pages/landingPage/LandingPage';
 import Header from './components/Header/Header';
 import UnAuthenticatedView from './pages/unauthenticated/UnAuthenticatedView';
 
@@ -15,17 +16,16 @@ function App() {
 
   return (
     <BrowserRouter>
+      <Header />
       <StyledApp>
         <NavigationBar />
-        <Header />
 
         <Switch>
-          <Route exact path="/" render={() => <h1></h1>} />
+          <Route exact path="/" component={LandingPage} />
           {isLoggedIn && (
             <>
               <Route path="/home" exact component={Home} />
               <Route path="/about" exact component={About} />
-              {/*it would be good to render this only in dev mode if we can get that requireAuth function working */}
               <Route path="/scratchpad" exact component={ScratchPad} />
             </>
           )}
@@ -37,7 +37,6 @@ function App() {
   );
 }
 const StyledApp = styled.div`
-  font-family: 'Comfortaa', cursive;
   text-align: center;
 `;
 const StyledHeader = styled.div`

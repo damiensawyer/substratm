@@ -1,8 +1,9 @@
-import { Button, Chip } from '@mui/material';
 import React from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { Toolbar } from '@material-ui/core';
+import { Button, Chip } from '@mui/material';
+
 import { useAppSelector } from '../../slices/hooks';
 import { SubstramLogo } from '../../content/logo';
 import MetamaskLogin from '../MetamaskLogin/MetamaskLogin';
@@ -62,25 +63,31 @@ const Header = () => {
     </StyledHeader>
   );
 };
-
+const StyledButton = styled(Button)`
+  height: 65px;
+  width: 170px;
+`;
 const StyledToolbar = styled(Toolbar)`
   & > * {
     align-items: center;
     margin-right: 10px;
-    min-width: calc(50% / 3);
-    max-height: 50%;
+    // min-width: calc(50% / 3);
+    // max-height: 50%;
+    height: 65px;
+    width: 170px;
   }
 `;
 
 const StyledHeader = styled.nav`
-  font-family: 'Comfortaa', cursive !important;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
-  & > * {
-    min-width: calc(100% / 2);
-  }
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  overflow: hidden;
   @media screen and (max-width: 800px) {
     flex-direction: column;
   }

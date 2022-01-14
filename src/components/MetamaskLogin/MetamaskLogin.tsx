@@ -1,4 +1,5 @@
 import { Button } from '@mui/material';
+import styled from 'styled-components';
 import { useAppDispatch } from '../../slices/hooks';
 import {
   login,
@@ -49,7 +50,7 @@ const MetamaskLogin = () => {
 
   return (
     <>
-      <Button
+      <StyledButton
         variant="contained"
         color="primary"
         disabled={isAuthenticating}
@@ -60,8 +61,12 @@ const MetamaskLogin = () => {
           : isLoggedIn
           ? 'Disconnect'
           : 'Connect Wallet'}
-      </Button>
+      </StyledButton>
     </>
   );
 };
+const StyledButton = styled(Button)`
+  height: 65px;
+  width: 170px;
+`;
 export default MetamaskLogin;

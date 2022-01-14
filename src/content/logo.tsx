@@ -25,22 +25,13 @@ export const Logo = () => {
 
 export const SubstramLogo = () => {
   const dispatch = useAppDispatch();
-  return (
-    <StyledTypographyLogo>
-      <Typography
-        variant="h2"
-        component="h3"
-        className={'noselect'}
-        onClick={() => dispatch(tapLogoForDevMode())}
-      >
-        SUBSTRATM
-      </Typography>
-    </StyledTypographyLogo>
-  );
+  return <StyledTypographyLogo>SUBSTRATM</StyledTypographyLogo>;
 };
+
 const StyledTypographyLogo = styled.div`
-  font-family: 'Comfortaa', cursive;
-  margin: 15px;
+  display: flex;
+  width: 24vw;
+  padding 0 24px;
 `;
 const StyledLogo = styled.img`
   height: 40vmin;
