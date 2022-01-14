@@ -9,7 +9,7 @@ async function updateFrontEnd(deployedContractAddress) {
   const data = `export const contractAddress = "${deployedContractAddress}";`;
   const contractAddrPath = path.resolve(
     __dirname,
-    '../utils/contractAddress.ts'
+    '../utils/contractAddress.tsx'
   );
 
   fs.writeFileSync(contractAddrPath, data, (err) => {
